@@ -1,24 +1,28 @@
 <template>
+    <div>Hello World</div>
+    <div v-for="menu in menus" :key="menu.id">
+        <p>이름 : {{ menu.name }}</p>
+        <p>가격 : {{ menu.price }}</p>
+    </div>
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
     name: 'App',
-    components: {
-        HelloWorld
+    data() {
+        return {
+            menus: [],
+        }
     },
     mounted() {
         const baseUrl = location.protocol + '//' + location.hostname + ':9090';
-        fetch(baseUrl + "/api/test")
+        fetch(baseUrl + "/menu")
             .then(res => {
-                return res.text();
+                return res.json();
             })
-            .then(data => {
-                console.log(data);
+            .then(result => {
+                this.menus = result;
             });
     }
 }

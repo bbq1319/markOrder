@@ -1,2 +1,9 @@
 server:
   port: 9090
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://markorder.c5y4salqda7s.ap-northeast-1.rds.amazonaws.com/sys?serverTimezone=Asia/Seoul
+    username: markncompany
+    password: markncompany!

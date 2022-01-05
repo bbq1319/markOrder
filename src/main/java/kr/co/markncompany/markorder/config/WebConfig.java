@@ -1,16 +1,39 @@
 package kr.co.markncompany.markorder.config;
 
+import kr.co.markncompany.markorder.security.JwtAuthenticationFilter;
+import kr.co.markncompany.markorder.security.JwtTokenProvider;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-public class WebConfig implements WebMvcConfigurer {
+@RequiredArgsConstructor
+public class WebConfig extends WebSecurityConfigurerAdapter {
+
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins("http://localhost:8080");
+    public void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity
+                .httpBasic().disable()
+                .csrf().disable()
+                .sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .and()
+                .authorizeHttpRequests()
+                    .antMatchers("/api/v1/login").permitAll()
+                    .antMatchers("/api/v1/signup").permitAll()
+                    .anyRequest().hasAnyRole("USER", "ADMIN")
+                .and()
+                .formLogin().disable()
+                .logout().disable()
+                .addFilterBefore(
+                        new JwtAuthenticationFilter(jwtTokenProvider),
+                        UsernamePasswordAuthenticationFilter.class
+                );
     }
 
 }

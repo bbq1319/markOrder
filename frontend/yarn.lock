@@ -1454,7 +1454,7 @@
   optionalDependencies:
     "prettier" "^1.18.2 || ^2.0.0"
 
-"@vue/devtools-api@^6.0.0-beta.18":
+"@vue/devtools-api@^6.0.0-beta.11", "@vue/devtools-api@^6.0.0-beta.18":
   "integrity" "sha512-FqC4s3pm35qGVeXRGOjTsRzlkJjrBLriDS9YXbflHLsfA9FrcKzIyWnLXoNm+/7930E8rRakXuAc2QkC50swAw=="
   "resolved" "https://registry.npmjs.org/@vue/devtools-api/-/devtools-api-6.0.0-beta.21.1.tgz"
   "version" "6.0.0-beta.21.1"
@@ -1952,6 +1952,13 @@
   "integrity" "sha1-1h9G2DslGSUOJ4Ta9bCUeai0HFk="
   "resolved" "https://registry.nlark.com/aws4/download/aws4-1.11.0.tgz"
   "version" "1.11.0"
+
+"axios@^0.20.0-0":
+  "integrity" "sha512-FdJxKL7EntcZprZvis5kDQ13aXVG1Fn022tG45wvP7/ILZ074pedaFLkI4uQgfRCrxwkzXeLnL3GOvXo6gqitg=="
+  "resolved" "https://registry.npmjs.org/axios/-/axios-0.20.0-0.tgz"
+  "version" "0.20.0-0"
+  dependencies:
+    "follow-redirects" "^1.10.0"
 
 "babel-eslint@^10.1.0":
   "integrity" "sha1-aWjlaKkQt4+zd5zdi2rC9HmUMjI="
@@ -4096,7 +4103,7 @@
     "inherits" "^2.0.3"
     "readable-stream" "^2.3.6"
 
-"follow-redirects@^1.0.0":
+"follow-redirects@^1.0.0", "follow-redirects@^1.10.0":
   "integrity" "sha512-fhUl5EwSJbbl8AR+uYL2KQDxLkdSjZGR36xy46AO7cOMTrCMON6Sa28FmAnC2tRTDbd/Uuzz3aJBv7EBN7JH8A=="
   "resolved" "https://registry.npmmirror.com/follow-redirects/download/follow-redirects-1.14.6.tgz"
   "version" "1.14.6"
@@ -8475,9 +8482,9 @@
   "resolved" "https://registry.npmmirror.com/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.9.1.tgz"
   "version" "1.9.1"
 
-"vue@^2 || ^3.0.0-0", "vue@^3.0.0", "vue@3.2.26":
+"vue@^2 || ^3.0.0-0", "vue@^3.0.0", "vue@^3.0.2", "vue@^3.2.26", "vue@3.2.26":
   "integrity" "sha512-KD4lULmskL5cCsEkfhERVRIOEDrfEL9CwAsLYpzptOGjaGFNWo3BQ9g8MAb7RaIO71rmVOziZ/uEN/rHwcUIhg=="
-  "resolved" "https://registry.npmmirror.com/vue/download/vue-3.2.26.tgz"
+  "resolved" "https://registry.npmjs.org/vue/-/vue-3.2.26.tgz"
   "version" "3.2.26"
   dependencies:
     "@vue/compiler-dom" "3.2.26"
@@ -8485,6 +8492,13 @@
     "@vue/runtime-dom" "3.2.26"
     "@vue/server-renderer" "3.2.26"
     "@vue/shared" "3.2.26"
+
+"vuex@^4.0.2":
+  "integrity" "sha512-M6r8uxELjZIK8kTKDGgZTYX/ahzblnzC4isU1tpmEuOIIKmV+TRdc+H4s8ds2NuZ7wpUTdGRzJRtoj+lI+pc0Q=="
+  "resolved" "https://registry.npmjs.org/vuex/-/vuex-4.0.2.tgz"
+  "version" "4.0.2"
+  dependencies:
+    "@vue/devtools-api" "^6.0.0-beta.11"
 
 "watchpack-chokidar2@^2.0.1":
   "integrity" "sha1-OFAAcu5uzmbzdpk2lQ6hdxvhyVc="

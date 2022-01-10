@@ -3,11 +3,11 @@
         <form @submit.prevent="login">
             <img class="login-logo" src="../assets/innologo.png">
             <div>
-                <input class="login-id" id="id" type="text" v-model="state.id" autocomplete="false"/>
+                <input class="login-id" id="memberId" type="text" v-model="this.memberId" autocomplete="false"/>
                 <i class="fas fa-user"></i>
             </div>
             <div>
-                <input class="login-pw" id="pw" type="password" v-model="state.pw"/>
+                <input class="login-pw" id="password" type="password" v-model="this.password"/>
                 <i class="fas fa-unlock-alt"></i>
             </div>
             <button class="login-btn" type="submit">Log in</button>
@@ -16,41 +16,56 @@
 </template>
 
 <script>
-import axios from 'axios';
-import router from '@/router/router';
-import {reactive} from 'vue';
-import {useStore} from 'vuex';
+import {mapActions} from 'vuex'
 
 export default {
-    setup() {
-        const store = useStore();
-        const state = reactive({
-            id: '',
-            pw: '',
-        });
-
-        const login = () => {
-            console.log(state.id, state.pw);
-            axios.post('http://localhost:9090/api/v1/login', {
-                id: state.id,
-                password: state.pw
-            }).then(function (res) {
-                const data = res.data.data;
-                store.commit('member/setToken', data.token);
-                store.commit('member/setMemberId', data.memberId);
-                store.commit('member/setName', data.name);
-                store.commit('member/setRoles', data.roles);
-
-                router.push('/main');
-            }).catch(function (error) {
-                console.log(error);
-            });
-        };
-
+    data() {
         return {
-            state, login
+            memberId: '',
+            password: '',
         }
-    }
+    },
+    methods: {
+        ...mapActions({
+            DO_LOGIN: 'member/DO_LOGIN'
+        }),
+        login() {
+            this.DO_LOGIN({
+                memberId: this.memberId,
+                password: this.password,
+            });
+        }
+    },
+
+    // setup() {
+    //     const store = useStore();
+    //     const state = reactive({
+    //         id: '',
+    //         pw: '',
+    //     });
+    //
+    //     const login = () => {
+    //         console.log(state.id, state.pw);
+    //         doLogin({
+    //             id: state.id,
+    //             password: state.pw
+    //         }).then(function (res) {
+    //             const data = res.data.data;
+    //             store.commit('member/setToken', data.token);
+    //             store.commit('member/setMemberId', data.memberId);
+    //             store.commit('member/setName', data.name);
+    //             store.commit('member/setRoles', data.roles);
+    //
+    //             router.push('/main');
+    //         }).catch(function (error) {
+    //             console.log(error);
+    //         });
+    //     };
+    //
+    //     return {
+    //         state, login
+    //     }
+    // }
 }
 </script>
 

@@ -1,44 +1,64 @@
+import {doLogin} from "@/api/api";
+import router from "@/routes/router";
+
 const state = {
-	token: '',
-	memberId: '',
-	name: '',
-	roles: [],
+    token: '',
+    memberId: '',
+    name: '',
+    roles: [],
 }
 
-const getter = {
-	getToken(state) {
-		return state.token;
-	},
-	getMemberId(state) {
-		return state.memberId;
-	},
-	getName(state) {
-		return state.name;
-	},
-	getRoles(state) {
-		return state.roles;
-	},
+const getters = {
+    GET_TOKEN(state) {
+        return state.token;
+    },
+    GET_MEMBER_ID(state) {
+        return state.memberId;
+    },
+    GET_NAME(state) {
+        return state.name;
+    },
+    GET_ROLES(state) {
+        return state.roles;
+    },
 }
 
 const mutations = {
-	setToken(state, token) {
-		state.token = token;
-	},
-	setMemberId(state, memberId) {
-		state.memberId = memberId;
-	},
-	setName(state, name) {
-		state.name = name;
-	},
-	setRoles(state, roles) {
-		state.roles = roles;
-	},
+    SET_TOKEN(state, token) {
+        state.token = token;
+    },
+    SET_MEMBER_ID(state, memberId) {
+        state.memberId = memberId;
+    },
+    SET_NAME(state, name) {
+        state.name = name;
+    },
+    SET_ROLES(state, roles) {
+        state.roles = roles;
+    },
 
 }
 
-const actions = {}
+const actions = {
+    DO_LOGIN(context, data) {
+        console.log(data);
+
+        doLogin(
+            data
+        ).then(function (res) {
+            const data = res.data.data;
+            context.commit('SET_TOKEN', data.token);
+            context.commit('SET_MEMBER_ID', data.memberId);
+            context.commit('SET_NAME', data.name);
+            context.commit('SET_ROLES', data.roles);
+            router.push('/main');
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
+}
 
 export default {
-	namespaced: true,
-	state, getter, mutations, actions
+    namespaced: true,
+    state, getters, mutations, actions
 }

@@ -3,7 +3,7 @@ const state = {
 
 }
 
-const getter = {
+const getters = {
     time2(state) {
         return state.counter * 2;
     },
@@ -23,5 +23,5 @@ const actions = {
 }
 
 export default {
-    state, getter, mutations, actions
+    state, getters, mutations, actions
 }

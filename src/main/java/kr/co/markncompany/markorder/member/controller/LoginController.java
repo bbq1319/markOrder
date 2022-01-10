@@ -36,7 +36,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody MemberDto memberDto, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Member member = memberRepository.findByMemberId(memberDto.getId())
+        Member member = memberRepository.findByMemberId(memberDto.getMemberId())
                 .orElseThrow(() -> new IllegalArgumentException("가입되지 않은 ID입니다."));
 
         if (!PasswordEncryption.mathes(memberDto.getPassword(), member.getPassword()))

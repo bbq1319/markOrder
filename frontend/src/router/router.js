@@ -1,8 +1,13 @@
 import { createWebHistory, createRouter } from 'vue-router';
 
 const routes = [
+	{
+		path: '/',
+		name: 'Login',
+		component: () => import('@/views/Login'),
+	},
     {
-        path: '/',
+        path: '/main',
         name: 'Main',
         component: () => import('@/views/Main'),
     },
@@ -22,6 +27,8 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     console.log(to, from);
+
+    console.log(document.cookie);
 
     next();
 })

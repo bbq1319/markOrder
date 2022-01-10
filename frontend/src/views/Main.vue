@@ -18,6 +18,8 @@ export default {
         }
     },
     mounted() {
+        console.log(document.cookie);
+
         const baseUrl = location.protocol + '//' + location.hostname + ':9090';
         fetch(baseUrl + "/menu")
             .then(res => {
@@ -31,12 +33,5 @@ export default {
 </script>
 
 <style>
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-}
+
 </style>

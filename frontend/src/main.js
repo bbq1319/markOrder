@@ -1,12 +1,11 @@
-import { createApp } from 'vue'
-
+import { createApp } from 'vue';
 import router from '@/router/router'
 import store from '@/store/store'
 
-// import App from './App.vue'
-import Login from "@/views/Login"
+import App from './App.vue'
+// import Login from "@/views/Login"
 
-const app = createApp(Login);
+const app = createApp(App);
 
 app.use(router);
 app.use(store)

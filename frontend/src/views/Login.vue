@@ -17,6 +17,7 @@
 
 <script>
 import axios from 'axios';
+import router from '@/router/router';
 
 export default {
     data() {
@@ -27,17 +28,16 @@ export default {
     },
     methods: {
         login: function () {
-            console.log(this.id);
-            console.log(this.pw);
-
+            console.log(this.id, this.pw);
             axios.post('http://localhost:9090/api/v1/login', {
                 id: this.id,
                 password: this.pw
             }).then(function (res) {
                 console.log(res);
+                console.log(document.cookie);
+                router.push('/main');
             }).catch(function (error) {
                 console.log(error);
-
                 console.log(error.response);
                 console.log(error.message);
                 console.log(error.request);

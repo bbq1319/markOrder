@@ -21,8 +21,8 @@ public class CookieUtil {
         return null;
     }
 
-    public static void getNewCookie(String token, Member member) {
-        HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getResponse();
+    public static void getNewCookie(String token, Member member, HttpServletResponse response) {
+        // HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getResponse();
 
         // JWT setting
         Cookie cookie = new Cookie("innoForest", token);

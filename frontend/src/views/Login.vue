@@ -1,16 +1,16 @@
 <template>
-    <div>
+    <div class="login">
         <form @submit.prevent="login">
+            <img class="login-logo" src="../assets/innologo.png">
             <div>
-                <label for="id">id: </label>
-                <input id="id" type="text" v-model="state.id" />
+                <input class="login-id" id="id" type="text" v-model="state.id" autocomplete="false"/>
+                <i class="fas fa-user"></i>
             </div>
             <div>
-                <label for="pw">pw: </label>
-                <input id="pw" type="password" v-model="state.pw" />
+                <input class="login-pw" id="pw" type="password" v-model="state.pw"/>
+                <i class="fas fa-unlock-alt"></i>
             </div>
-
-            <button type="submit">로그인</button>
+            <button class="login-btn" type="submit">Log in</button>
         </form>
     </div>
 </template>
@@ -18,8 +18,8 @@
 <script>
 import axios from 'axios';
 import router from '@/router/router';
-import { reactive } from 'vue';
-import { useStore } from 'vuex';
+import {reactive} from 'vue';
+import {useStore} from 'vuex';
 
 export default {
     setup() {
@@ -55,5 +55,85 @@ export default {
 </script>
 
 <style>
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    margin-left: -240px;
+    background-image: url("~@/assets/bg.jpeg");
+}
+
+.login::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.4;
+    background-color: black;
+}
+
+.login form {
+    position: relative;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login form div {
+    position: relative;
+    padding: 10px;
+}
+
+.login form i {
+    position: absolute;
+    left: 30px;
+    top: 27px;
+    color: white;
+    opacity: 0.6;
+}
+
+.login form input {
+    width: 200px;
+    height: 50px;
+    border-radius: 25px;
+    padding: 0 20px 0 45px;
+    border: 0px;
+    color: white;
+    background-color: #5A515E;
+}
+
+.login form input:focus {
+    outline: 2px solid #2A2A3A;
+}
+
+.login form input:-webkit-autofill,
+.login form input:-webkit-autofill:hover,
+.login form input:-webkit-autofill:focus,
+.login form input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-transition: background-color 9999s ease-out;
+    -webkit-box-shadow: 0 0 0px 1000px #5A515E inset !important;
+    -webkit-text-fill-color: white !important;
+}
+
+.login-btn {
+    width: 265px;
+    height: 50px;
+    margin: 10px 0 0 0;
+    border-radius: 25px;
+    border: 0px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background-color: #FB3566;
+}
+
+.login-logo {
+    width: 180px;
+    margin-bottom: 30px;
+}
 
 </style>

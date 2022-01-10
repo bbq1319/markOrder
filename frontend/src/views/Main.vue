@@ -1,5 +1,7 @@
 <template>
     <div>
+        <SideMenu></SideMenu>
+
         <div>Hello World</div>
         <div v-for="menu in state.menus" :key="menu.id">
             <p>이름 : {{ menu.name }}</p>
@@ -14,6 +16,7 @@
 <script>
 import { onMounted, computed, reactive } from "vue";
 import { useStore } from 'vuex';
+import SideMenu from "@/components/SideMenu";
 
 export default {
     setup() {
@@ -42,6 +45,9 @@ export default {
             state, store
         }
     },
+    components: {
+        'SideMenu': SideMenu,
+    }
 
     // name: 'App',
     // data() {

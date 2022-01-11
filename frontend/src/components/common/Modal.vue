@@ -17,9 +17,8 @@
 
                 <div class="modal-footer">
                     <slot name="footer">
-                        default footer
                         <button class="modal-default-button" v-bind:click="$emit('close')">
-                            OK
+                            확인
                         </button>
                     </slot>
                 </div>
@@ -28,7 +27,13 @@
     </div>
 </template>
 
-<style scoped>
+<script>
+export default {
+
+}
+</script>
+
+<style>
 .modal-mask {
     position: fixed;
     z-index: 9998;
@@ -49,25 +54,42 @@
 .modal-container {
     width: 300px;
     margin: 0px auto;
-    padding: 20px 30px;
+    padding: 40px 30px;
     background-color: #fff;
-    border-radius: 2px;
+    border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
     transition: all .3s ease;
+    text-align: center;
     font-family: Helvetica, Arial, sans-serif;
 }
 
-.modal-header h3 {
-    margin-top: 0;
-    color: #42b983;
+.modal-header {
+    font-size: 24px;
+    font-weight: bold;
 }
 
 .modal-body {
-    margin: 20px 0;
+    margin: 30px 0 40px 0;
+}
+
+.modal-body .desc {
+    font-size: 14px;
 }
 
 .modal-default-button {
-    float: right;
+    width: 100%;
+    height: 50px;
+    border: none;
+    color: white;
+    background-color: #4caf50;
+}
+
+.error {
+    color: #f44336;
+}
+
+.success {
+    color: #4caf50;
 }
 
 /*

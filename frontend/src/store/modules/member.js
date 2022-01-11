@@ -1,4 +1,5 @@
 import {doLogin} from "@/api/api";
+import VueCookie from 'vue-cookies';
 import router from "@/routes/router";
 
 const state = {
@@ -6,7 +7,6 @@ const state = {
 	memberId: '',
 	name: '',
 	roles: [],
-	showModal: false,
 }
 
 const getters = {
@@ -22,9 +22,6 @@ const getters = {
 	GET_ROLES(state) {
 		return state.roles;
 	},
-	GET_SHOW_MODAL(state) {
-		return state.showModal;
-	}
 }
 
 const mutations = {
@@ -40,15 +37,10 @@ const mutations = {
 	SET_ROLES(state, roles) {
 		state.roles = roles;
 	},
-	OPEN_MODAL(state) {
-		state.showModal = !state.showModal;
-	},
 }
 
 const actions = {
-	DO_LOGIN(context, data) {
-		console.log(data);
-
+	DO_LOGIN(context , data) {
 		doLogin(
 			data
 		).then(function (res) {
@@ -57,10 +49,16 @@ const actions = {
 			context.commit('SET_MEMBER_ID', data.memberId);
 			context.commit('SET_NAME', data.name);
 			context.commit('SET_ROLES', data.roles);
+
+			VueCookie.set('token', data.token);
+			VueCookie.set('memberId', data.memberId);
+			VueCookie.set('name', data.name);
+			VueCookie.set('roles', data.roles);
+
 			router.push('/main');
-		}).catch(function (error) {
-			console.log(error);
-			context.commit('OPEN_MODAL');
+		}).catch(error => {
+			console.log(error.response);
+			context.dispatch('response/ERROR_LOGIN', error.response, {root: true});
 		});
 	}
 }

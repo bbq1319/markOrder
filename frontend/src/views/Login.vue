@@ -13,9 +13,13 @@
             <button class="login-btn" type="submit">Log in</button>
         </form>
 
-        <Modal v-if="showModal" @click="OPEN_MODAL()">
+        <Modal v-if="showModal" @click="CHANGE_MODAL()">
             <template v-slot:header>
-                Custom Header
+                <p :class="isSuccess">{{ headerMsg }}</p>
+            </template>
+            <template v-slot:body>
+                <p>{{ msg }}</p>
+                <p class="desc">에러코드 : {{ status }}</p>
             </template>
         </Modal>
     </div>
@@ -34,8 +38,18 @@ export default {
     },
     computed: {
         ...mapGetters({
-            showModal: 'member/GET_SHOW_MODAL'
+            showModal: 'response/GET_SHOW_MODAL',
+            success: 'response/GET_SUCCESS',
+            status: 'response/GET_STATUS',
+            msg: 'response/GET_MSG',
+            headerMsg: 'response/GET_HEADER_MSG',
         }),
+        isSuccess() {
+            return {
+                success: this.success,
+                error: !this.success
+            }
+        },
     },
     components: {
         'Modal': Modal
@@ -51,7 +65,7 @@ export default {
             });
         },
         ...mapMutations({
-            OPEN_MODAL: 'member/OPEN_MODAL'
+            CHANGE_MODAL: 'response/CHANGE_MODAL',
         })
     },
 }

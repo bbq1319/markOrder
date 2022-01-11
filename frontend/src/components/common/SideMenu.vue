@@ -1,7 +1,7 @@
 <template>
     <div class="side-menu">
         <div class="side-menu-profile">
-            <img class="member-img" src="../assets/logo.png">
+            <img class="member-img" src="src/assets/logo.png">
             <div>
                 <p style="font-size: 16px">김민섭 님</p>
                 <p style="font-size: 12px">환영합니다!</p>

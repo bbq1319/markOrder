@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import SideMenu from '@/components/SideMenu';
+import SideMenu from '@/components/common/SideMenu';
 
 export default {
     components: {

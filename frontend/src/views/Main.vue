@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import SideMenu from '@/components/SideMenu';
+import SideMenu from '@/components/common/SideMenu';
 import {mapGetters, mapActions} from 'vuex'
 
 export default {

@@ -12,11 +12,18 @@
             </div>
             <button class="login-btn" type="submit">Log in</button>
         </form>
+
+        <Modal v-if="showModal" @click="OPEN_MODAL()">
+            <template v-slot:header>
+                Custom Header
+            </template>
+        </Modal>
     </div>
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters, mapMutations} from 'vuex';
+import Modal from '@/components/common/Modal';
 
 export default {
     data() {
@@ -24,6 +31,14 @@ export default {
             memberId: '',
             password: '',
         }
+    },
+    computed: {
+        ...mapGetters({
+            showModal: 'member/GET_SHOW_MODAL'
+        }),
+    },
+    components: {
+        'Modal': Modal
     },
     methods: {
         ...mapActions({
@@ -34,38 +49,11 @@ export default {
                 memberId: this.memberId,
                 password: this.password,
             });
-        }
+        },
+        ...mapMutations({
+            OPEN_MODAL: 'member/OPEN_MODAL'
+        })
     },
-
-    // setup() {
-    //     const store = useStore();
-    //     const state = reactive({
-    //         id: '',
-    //         pw: '',
-    //     });
-    //
-    //     const login = () => {
-    //         console.log(state.id, state.pw);
-    //         doLogin({
-    //             id: state.id,
-    //             password: state.pw
-    //         }).then(function (res) {
-    //             const data = res.data.data;
-    //             store.commit('member/setToken', data.token);
-    //             store.commit('member/setMemberId', data.memberId);
-    //             store.commit('member/setName', data.name);
-    //             store.commit('member/setRoles', data.roles);
-    //
-    //             router.push('/main');
-    //         }).catch(function (error) {
-    //             console.log(error);
-    //         });
-    //     };
-    //
-    //     return {
-    //         state, login
-    //     }
-    // }
 }
 </script>
 

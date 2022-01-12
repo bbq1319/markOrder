@@ -1,5 +1,5 @@
 import {createWebHistory, createRouter} from 'vue-router';
-import VueCookie from 'vue-cookies';
+import {useCookies} from "vue3-cookies";
 
 const routes = [
 	{
@@ -31,11 +31,11 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-	if (VueCookie.isKey('token')) {
-		VueCookie.get('token');
-	} else if (to.name !== "Login") {
-		router.push("/login");
-	}
+	const { cookies } = useCookies();
+	if (cookies.isKey('token'))
+		console.log("token hi");
+	else if (to.name !== "Login")
+		next('/login');
 
 	next();
 })

@@ -44,10 +44,20 @@ const mutations = {
 
 const actions = {
 	ERROR_LOGIN(context, data) {
+		let errorData = data;
+		if (data == undefined || data == null)
+			errorData = {
+				data : {
+					success: false,
+					error: 'VUE 오류 발생.'
+				},
+				status: '-'
+			}
+
 		context.commit('CHANGE_MODAL');
-		context.commit('SET_SUCCESS', data.data.success);
-		context.commit('SET_STATUS', data.status);
-		context.commit('SET_MSG', data.data.error);
+		context.commit('SET_SUCCESS', errorData.data.success);
+		context.commit('SET_STATUS', errorData.status);
+		context.commit('SET_MSG', errorData.data.error);
 		context.commit('SET_HEADER_MSG', '에러가 발생했습니다.');
 	}
 }

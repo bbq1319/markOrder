@@ -1,6 +1,6 @@
 import {doLogin} from "@/api/api";
-import VueCookie from 'vue-cookies';
 import router from "@/routes/router";
+import {useCookies} from "vue3-cookies";
 
 const state = {
 	token: '',
@@ -40,7 +40,7 @@ const mutations = {
 }
 
 const actions = {
-	DO_LOGIN(context , data) {
+	DO_LOGIN(context, data) {
 		doLogin(
 			data
 		).then(function (res) {
@@ -50,14 +50,16 @@ const actions = {
 			context.commit('SET_NAME', data.name);
 			context.commit('SET_ROLES', data.roles);
 
-			VueCookie.set('token', data.token);
-			VueCookie.set('memberId', data.memberId);
-			VueCookie.set('name', data.name);
-			VueCookie.set('roles', data.roles);
+			const { cookies } = useCookies();
+			cookies
+				.set('token', data.token)
+				.set('memberId', data.memberId)
+				.set('name', data.name)
+				.set('roles', data.roles);
 
 			router.push('/main');
 		}).catch(error => {
-			console.log(error.response);
+			console.log(error);
 			context.dispatch('response/ERROR_LOGIN', error.response, {root: true});
 		});
 	}

@@ -1,6 +1,6 @@
 package kr.co.markncompany.markorder.order.controller;
 
-import kr.co.markncompany.markorder.order.entity.Menu;
+import kr.co.markncompany.markorder.order.Menu;
 import kr.co.markncompany.markorder.order.repository.MenuRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

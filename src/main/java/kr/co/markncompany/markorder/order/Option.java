@@ -1,4 +1,4 @@
-package kr.co.markncompany.markorder.order.entity;
+package kr.co.markncompany.markorder.order;
 
 import lombok.Getter;
 
@@ -7,11 +7,11 @@ import javax.persistence.Id;
 
 @Entity
 @Getter
-public class Menu {
+public class Option {
 
     @Id
-    private long id;
-    private String name;
+    private String id;
     private String price;
+    private String name;
 
 }

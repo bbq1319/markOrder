@@ -22,7 +22,7 @@ public class OptionController {
     private final OptionService optionService;
     private final OptionRepository optionRepository;
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity option() {
         List<Options> optionList = optionRepository.findAll();
         if (optionList.size() > 0)

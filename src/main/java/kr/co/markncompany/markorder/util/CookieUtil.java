@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 public class CookieUtil {
 
     public static String getCookie(HttpServletRequest request) {
+        if (request.getHeader("X-AUTH-TOKEN") != null) {
+            return request.getHeader("X-AUTH-TOKEN");
+        }
+
         if (request.getCookies() != null) {
             for (Cookie cookie : request.getCookies()) {
                 if (cookie.getName().equals("innoForest")) {

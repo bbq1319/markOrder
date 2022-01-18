@@ -8,7 +8,6 @@ import kr.co.markncompany.markorder.member.transfer.MemberResponse;
 import kr.co.markncompany.markorder.security.JwtTokenProvider;
 import kr.co.markncompany.markorder.security.PasswordEncryption;
 import kr.co.markncompany.markorder.util.ClientInfoUtil;
-import kr.co.markncompany.markorder.util.CookieUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,8 +44,6 @@ public class LoginController {
             throw new IllegalArgumentException("비활성화된 사용자입니다. 관리자에게 문의해주세요.");
 
         String token = jwtTokenProvider.createToken(member.getUsername(), member.getRoles());
-        CookieUtil.getNewCookie(token, member, response);
-
         String ip = ClientInfoUtil.getClientIp(request);
         String ua = ClientInfoUtil.getUserAgent(request);
 

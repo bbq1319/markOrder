@@ -27,7 +27,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/api/v1/login").permitAll()
                     .antMatchers("/api/v1/signup").permitAll()
                     .antMatchers("/menu").permitAll()
-                    .anyRequest().hasAnyAuthority("USER", "ADMIN")
+                    .anyRequest().hasAnyRole("USER", "ADMIN")
                 .and()
                 .formLogin().disable()
                 .logout().disable()

@@ -27,6 +27,9 @@ export default {
     methods: {
         ...mapActions({
             GET_MENU_LIST: 'menu/GET_MENU_LIST'
+        }),
+        ...mapActions({
+            GET_OPTION_LIST: 'menu/GET_OPTION_LIST'
         })
     },
     components: {
@@ -34,6 +37,7 @@ export default {
     },
     created() {
         this.GET_MENU_LIST();
+        this.GET_OPTION_LIST();
     },
 }
 </script>

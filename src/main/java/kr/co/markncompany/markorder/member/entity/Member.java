@@ -1,6 +1,7 @@
 package kr.co.markncompany.markorder.member.entity;
 
 import kr.co.markncompany.markorder.common.BaseEntity;
+import kr.co.markncompany.markorder.member.Role;
 import kr.co.markncompany.markorder.member.dto.MemberDto;
 import kr.co.markncompany.markorder.security.PasswordEncryption;
 import lombok.*;
@@ -31,21 +32,22 @@ public class Member extends BaseEntity implements UserDetails {
     private boolean useFlag;
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(joinColumns = @JoinColumn(name = "member_id"))
-    private List<String> roles = new ArrayList<>();
+    private List<Role> roles = new ArrayList<>();
 
     public Member(MemberDto memberDto) throws Exception {
         this.memberId = memberDto.getMemberId();
         this.password = PasswordEncryption.encryption(memberDto.getPassword());
         this.name = memberDto.getName();
         this.useFlag = true;
-        this.roles = Arrays.asList("ROLE_ADMIN", "ROLE_USER");
+        this.roles = Arrays.asList(Role.ADMIN, Role.USER);
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.roles.stream()
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+//        return this.roles.stream()
+//                .map(SimpleGrantedAuthority::new)
+//                .collect(Collectors.toList());
+        return this.roles;
     }
 
     @Override

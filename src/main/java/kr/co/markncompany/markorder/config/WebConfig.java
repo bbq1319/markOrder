@@ -16,7 +16,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
     private final JwtTokenProvider jwtTokenProvider;
 
     @Override
-    public void configure(HttpSecurity httpSecurity) throws Exception {
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .httpBasic().disable()
                 .csrf().disable()
@@ -27,7 +27,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/api/v1/login").permitAll()
                     .antMatchers("/api/v1/signup").permitAll()
                     .antMatchers("/menu").permitAll()
-                    .anyRequest().hasAnyRole("USER", "ADMIN")
+                    .anyRequest().hasAnyAuthority("USER", "ADMIN")
                 .and()
                 .formLogin().disable()
                 .logout().disable()

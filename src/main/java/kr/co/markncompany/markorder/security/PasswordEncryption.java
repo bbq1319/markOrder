@@ -30,8 +30,6 @@ public class PasswordEncryption {
         byte[] encrypted = c.doFinal(password.getBytes(StandardCharsets.UTF_8));
 
         String result = DatatypeConverter.printBase64Binary(encrypted);
-        System.out.println(result);
-
         return result;
     }
 

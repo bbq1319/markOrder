@@ -15,6 +15,9 @@
             <router-link to="/menu" :class="{ 'active': curMenu === 'Menu' }">
                 <span>커피주문</span>
             </router-link>
+            <router-link to="/menu" :class="{ 'active': curMenu === 'AddMenu' }">
+                <span>커피추가</span>
+            </router-link>
         </div>
     </div>
 </template>

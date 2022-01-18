@@ -1,4 +1,4 @@
-import { getMenuList } from "@/api/api";
+import { getMenuList, getOptionList } from "@/api/api";
 
 const state = {
     menus: []
@@ -24,8 +24,20 @@ const actions = {
             context.commit('SET_MENUS', res.data);
         }).catch(error => {
             console.log(error);
+            console.log(error.response);
         });
-    }
+    },
+	// 추후 옵션으로 이동
+	GET_OPTION_LIST(context) {
+        getOptionList({
+
+        }).then(res => {
+            context.commit('SET_MENUS', res.data);
+        }).catch(error => {
+            console.log(error);
+            console.log(error.response);
+        });
+    },
 }
 
 export default {

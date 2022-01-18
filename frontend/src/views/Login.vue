@@ -78,7 +78,8 @@ export default {
     align-items: center;
     width: 100vw;
     height: 100vh;
-    margin-left: -240px;
+    margin-top: -50px;
+    margin-left: -270px;
     background-image: url("~@/assets/bg.jpeg");
 }
 

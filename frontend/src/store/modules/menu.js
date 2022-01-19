@@ -1,7 +1,13 @@
 import { getMenuList } from "@/api/menu";
 
 const state = {
-    menus: [],
+    menus: [{
+        id: '',
+        name: '',
+        engName: '',
+        price: '',
+        menuGroupId: '',
+    }],
 }
 
 const getters = {

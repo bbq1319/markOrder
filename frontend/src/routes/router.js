@@ -1,5 +1,5 @@
 import {createWebHistory, createRouter} from 'vue-router';
-import {useCookies} from "vue3-cookies";
+import {store} from "@/store/store";
 
 const routes = [
 	{
@@ -31,11 +31,11 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-	const { cookies } = useCookies();
-	if (cookies.isKey('token'))
-		console.log("token hi");
-	else if (to.name !== "Login")
+	const token = store.getters["member/GET_TOKEN"];
+	if (to.name !== "Login" && token == '')
 		next('/login');
+	else if (to.name == "Login" && token != '')
+		next('/main')
 
 	next();
 })

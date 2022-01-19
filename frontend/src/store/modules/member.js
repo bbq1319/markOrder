@@ -1,6 +1,5 @@
 import {doLogin} from "@/api/api";
 import router from "@/routes/router";
-import {useCookies} from "vue3-cookies";
 
 const state = {
 	token: '',
@@ -49,13 +48,6 @@ const actions = {
 			context.commit('SET_MEMBER_ID', data.memberId);
 			context.commit('SET_NAME', data.name);
 			context.commit('SET_ROLES', data.roles);
-
-			const { cookies } = useCookies();
-			cookies
-				.set('token', data.token)
-				.set('memberId', data.memberId)
-				.set('name', data.name)
-				.set('roles', data.roles);
 
 			router.push('/main');
 		}).catch(error => {

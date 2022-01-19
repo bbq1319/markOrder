@@ -1,58 +1,30 @@
 import axios from "axios";
-import {store} from "@/store/store"
+import {setInterceptors} from "@/api/common/interceptors";
 
-function setInterceptors(instance) {
-    instance.interceptors.request.use (
-        function (config) {
-            config.headers["X-AUTH-TOKEN"] = store.getters["member/GET_TOKEN"]
-            return config;
-        },
-        function (error) {
-            return Promise.reject(error);
-        }
-    );
-
-    instance.interceptors.response.use (
-        function (response) {
-            return response;
-        },
-        function (error) {
-            return Promise.reject(error);
-        }
-    );
-
+function createInstance() {
+    const instance = axios.create();
     return instance;
 }
 
-function createInstance() {
-    const instance = axios.create({
-        baseUrl: 'http://localhost:9090',
-    });
+export const instance = createInstance();
 
+function createTokenInstance() {
+    const instance = axios.create();
     return setInterceptors(instance);
 }
 
-const ins = createInstance();
-const config = {
-    // local
-    baseUrl: 'http://localhost:9090',
-}
+export const tokenInstance = createTokenInstance();
 
 function doLogin(data) {
-    return ins.post(`${config.baseUrl}/api/v1/login`, data);
+    return instance.post(`/api/v1/login`, data);
     // return axios.post(`${config.baseUrl}/api/v1/login`, data);
 }
 
-function getMenuList() {
-    return axios.get(`${config.baseUrl}/menu`);
-}
-
 function getOptionList() {
-	return ins.get(`${config.baseUrl}/api/v1/option`);
+    return instance.get(`/api/v1/option`);
 }
 
 export {
     doLogin,
-    getMenuList,
-	getOptionList
+    getOptionList
 }

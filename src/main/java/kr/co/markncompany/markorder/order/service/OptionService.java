@@ -22,7 +22,8 @@ public class OptionService {
 
     @Transactional
     public long insertOption(OptionDto optionDto) {
-        OptionGroup optionGroup = optionGroupRepository.findById(optionDto.getOptionGroupId()).orElseThrow(() -> new IllegalArgumentException("옵션그룹을 찾을 수 없습니다.."));
+        OptionGroup optionGroup = optionGroupRepository.findById(optionDto.getOptionGroupId())
+                .orElseThrow(() -> new IllegalArgumentException("옵션그룹을 찾을 수 없습니다.."));
         Options options = new Options(optionDto, optionGroup);
         Options save = optionRepository.save(options);
         return save.getId();

@@ -48,7 +48,7 @@ public class OptionController {
 
         long id = optionService.insertOption(optionDto);
         if (id > 0)
-            return ResponseEntity.ok().body("저장에 성공했습니다");
+            return ResponseEntity.ok().body("저장에 성공했습니다.");
         else
             return ResponseEntity.badRequest().body("저장에 실패했습니다.");
     }
@@ -68,7 +68,7 @@ public class OptionController {
 
         long id = optionService.insertOptionGroup(optionGroupDto);
         if (id > 0)
-            return ResponseEntity.ok().body("저장에 성공했습니다");
+            return ResponseEntity.ok().body("저장에 성공했습니다.");
         else
             return ResponseEntity.badRequest().body("저장에 실패했습니다.");
     }

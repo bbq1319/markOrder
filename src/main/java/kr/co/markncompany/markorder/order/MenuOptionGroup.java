@@ -1,6 +1,8 @@
 package kr.co.markncompany.markorder.order;
 
+import kr.co.markncompany.markorder.order.dto.MenuOptionGroupDto;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -8,6 +10,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 public class MenuOptionGroup {
 
     @Id
@@ -23,5 +26,10 @@ public class MenuOptionGroup {
     @ManyToOne
     @JoinColumn(name = "option_group_id")
     private OptionGroup optionGroup;
+
+    public MenuOptionGroup(MenuOptionGroupDto menuOptionGroupDto) {
+        this.orderPrice = menuOptionGroupDto.getOrderPrice();
+        this.count = menuOptionGroupDto.getCount();
+    }
 
 }

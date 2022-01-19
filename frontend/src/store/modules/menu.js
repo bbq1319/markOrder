@@ -1,26 +1,19 @@
-import { getMenuList, getOptionList } from "@/api/api";
+import { getMenuList } from "@/api/menu";
 
 const state = {
     menus: [],
-	options: [],
 }
 
 const getters = {
     GET_MENUS(state) {
         return state.menus;
     },
-	GET_OPTIONS(state) {
-		return state.options;
-	}
 }
 
 const mutations = {
     SET_MENUS(state, data) {
         state.menus = data;
     },
-	SET_OPTIONS(state, data) {
-        state.options = data;
-    }
 }
 
 const actions = {
@@ -28,18 +21,7 @@ const actions = {
         getMenuList({
 
         }).then(res => {
-            context.commit('SET_MENUS', res.data);
-        }).catch(error => {
-            console.log(error);
-            console.log(error.response);
-        });
-    },
-	// 추후 옵션으로 이동
-	GET_OPTION_LIST(context) {
-        getOptionList({
-
-        }).then(res => {
-			console.log(res);
+            console.log(res);
             context.commit('SET_MENUS', res.data);
         }).catch(error => {
             console.log(error);

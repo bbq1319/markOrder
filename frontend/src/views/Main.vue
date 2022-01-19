@@ -8,6 +8,11 @@
             <p>가격 : {{ menu.price }}</p>
         </div>
 
+        <div v-for="option in options" :key="option">
+            <p>이름 : {{ option.name }}</p>
+            <p>가격 : {{ option.price }}</p>
+        </div>
+
         <p>{{ token }}</p>
         <img alt="Vue logo" src="../assets/logo.png">
     </div>
@@ -21,7 +26,8 @@ export default {
     computed: {
         ...mapGetters({
             menus: 'menu/GET_MENUS',
-            token: 'member/GET_TOKEN'
+            token: 'member/GET_TOKEN',
+            options: 'menu/GET_OPTIONS'
         })
     },
     methods: {
@@ -36,8 +42,8 @@ export default {
         'SideMenu': SideMenu,
     },
     created() {
-        this.GET_MENU_LIST();
         this.GET_OPTION_LIST();
+        this.GET_MENU_LIST();
     },
 }
 </script>

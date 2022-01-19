@@ -1,11 +1,14 @@
 package kr.co.markncompany.markorder.order;
 
+import kr.co.markncompany.markorder.order.dto.OptionDto;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@NoArgsConstructor
 public class Options {
 
     @Id
@@ -15,7 +18,13 @@ public class Options {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "option_group_id", insertable = false, updatable = false)
+    @JoinColumn(name = "option_group_id", updatable = false)
     private OptionGroup optionGroup;
+
+    public Options(OptionDto optionDto, OptionGroup optionGroup) {
+        this.price = optionDto.getPrice();
+        this.name = optionDto.getName();
+        this.optionGroup = optionGroup;
+    }
 
 }

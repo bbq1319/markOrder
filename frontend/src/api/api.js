@@ -48,7 +48,7 @@ function getMenuList() {
 }
 
 function getOptionList() {
-	return ins.get(`/api/v1/option`);
+	return ins.get(`${config.baseUrl}/api/v1/option`);
 }
 
 export {

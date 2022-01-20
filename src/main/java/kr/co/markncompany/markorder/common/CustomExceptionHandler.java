@@ -1,5 +1,6 @@
 package kr.co.markncompany.markorder.common;
 
+import io.jsonwebtoken.ExpiredJwtException;
 import kr.co.markncompany.markorder.common.transfer.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,15 @@ public class CustomExceptionHandler {
         if (e != null && e.getMessage() != null)
             return ResponseEntity.badRequest().body(new ErrorResponse(e.getMessage()));
 
-        return ResponseEntity.badRequest().body(new ErrorResponse("알 수 없는 에러가 발생했습니다."));
+        return ResponseEntity.badRequest().body(new ErrorResponse("[IllegalArgumentException] 알 수 없는 에러가 발생했습니다."));
+    }
+
+    @ExceptionHandler(ExpiredJwtException.class)
+    protected ResponseEntity expiredJwtException(ExpiredJwtException e) {
+        if (e != null && e.getMessage() != null)
+            return ResponseEntity.badRequest().body(new ErrorResponse(e.getMessage()));
+
+        return ResponseEntity.badRequest().body(new ErrorResponse("[ExpiredJwtException] 알 수 없는 에러가 발생했습니다."));
     }
 
 }

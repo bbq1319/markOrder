@@ -1,12 +1,15 @@
 package kr.co.markncompany.markorder.order.controller;
 
+import kr.co.markncompany.markorder.common.transfer.ErrorResponse;
 import kr.co.markncompany.markorder.order.dto.MenuDto;
 import kr.co.markncompany.markorder.order.dto.MenuGroupDto;
 import kr.co.markncompany.markorder.order.dto.MenuOptionGroupDto;
 import kr.co.markncompany.markorder.order.repository.MenuCustomRepository;
 import kr.co.markncompany.markorder.order.repository.MenuRepository;
 import kr.co.markncompany.markorder.order.service.MenuService;
+import kr.co.markncompany.markorder.util.TokenUtil;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -21,12 +25,16 @@ import java.util.List;
 @RequestMapping("/api/v1/menu")
 public class MenuController {
 
+    private final TokenUtil tokenUtil;
     private final MenuService menuService;
     private final MenuRepository menuRepository;
     private final MenuCustomRepository menuCustomRepository;
 
     @GetMapping("")
-    public ResponseEntity menu() {
+    public ResponseEntity menu(HttpServletRequest request) {
+        if (tokenUtil.checkJwt(request))
+            return new ResponseEntity(new ErrorResponse("invalid token"), HttpStatus.UNAUTHORIZED);
+
         List<MenuDto> menuList = menuCustomRepository.getMenuList();
         if (menuList.size() > 0)
             return ResponseEntity.ok().body(menuList);

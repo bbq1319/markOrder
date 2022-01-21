@@ -21,84 +21,6 @@
                     </div>
                 </div>
 
-
-<!--                <div class="menu-body">-->
-<!--                    <div>-->
-<!--                        <p>ESPRESSO BEVERAGE</p>-->
-<!--                        <p>Regular</p>-->
-<!--                        <p>Large</p>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        <div class="menu-name">-->
-<!--                            <p>에스프레소</p>-->
-<!--                            <span>Espresso</span>-->
-<!--                        </div>-->
-<!--                        <p>4.0</p>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        <div class="menu-name">-->
-<!--                            <p>에스프레소</p>-->
-<!--                            <span>Espresso</span>-->
-<!--                        </div>-->
-<!--                        <p>4.0</p>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        <div class="menu-name">-->
-<!--                            <p>에스프레소</p>-->
-<!--                            <span>Espresso</span>-->
-<!--                        </div>-->
-<!--                        <p>4.0</p>-->
-<!--                        <p>5.0</p>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        <div class="menu-name">-->
-<!--                            <p>에스프레소</p>-->
-<!--                            <span>Espresso</span>-->
-<!--                        </div>-->
-<!--                        <p>4.0</p>-->
-<!--                        <p>5.0</p>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        <div class="menu-name">-->
-<!--                            <p>에스프레소</p>-->
-<!--                            <span>Espresso</span>-->
-<!--                        </div>-->
-<!--                        <p>4.0</p>-->
-<!--                        <p>5.0</p>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        <div class="menu-name">-->
-<!--                            <p>에스프레소</p>-->
-<!--                            <span>Espresso</span>-->
-<!--                        </div>-->
-<!--                        <p>4.0</p>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        <div class="menu-name">-->
-<!--                            <p>에스프레소</p>-->
-<!--                            <span>Espresso</span>-->
-<!--                        </div>-->
-<!--                        <p>4.0</p>-->
-<!--                        <p>5.0</p>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        <div class="menu-name">-->
-<!--                            <p>에스프레소</p>-->
-<!--                            <span>Espresso</span>-->
-<!--                        </div>-->
-<!--                        <p>4.0</p>-->
-<!--                        <p>5.0</p>-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        <div class="menu-name">-->
-<!--                            <p>에스프레소</p>-->
-<!--                            <span>Espresso</span>-->
-<!--                        </div>-->
-<!--                        <p>4.0</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-
                 <div>
                     <div class="menu-body">
                         <div>
@@ -106,41 +28,16 @@
                             <p>Regular</p>
                             <p>Large</p>
                         </div>
-                        <div>
-                            <div class="menu-name">
-                                <p>에스프레소</p>
-                                <span>Espresso</span>
-                            </div>
-                            <p>4.0</p>
-                            <p>5.0</p>
-                        </div>
-                        <div>
-                            <div class="menu-name">
-                                <p>에스프레소</p>
-                                <span>Espresso</span>
-                            </div>
-                            <p>4.0</p>
-                            <p>5.0</p>
-                        </div>
-                        <div>
-                            <div class="menu-name">
-                                <p>에스프레소</p>
-                                <span>Espresso</span>
-                            </div>
-                            <p>4.0</p>
-                            <p>5.0</p>
-                        </div>
-                        <div>
-                            <div class="menu-name">
-                                <p>에스프레소</p>
-                                <span>Espresso</span>
-                            </div>
-                            <p>4.0</p>
-                            <p>5.0</p>
+                        <div v-for="beverage in menus" :key="beverage">
+                            <template v-if="beverage.menuGroupId === 2">
+                                <div class="menu-name">
+                                    <p>{{ beverage.name }}</p>
+                                    <span>{{ beverage.engName }}</span>
+                                </div>
+                                <p>{{ beverage.price }}</p>
+                            </template>
                         </div>
                     </div>
-
-
 
                     <div class="menu-body">
                         <div>
@@ -148,37 +45,17 @@
                             <p>Regular</p>
                             <p>Large</p>
                         </div>
-                        <div>
-                            <div class="menu-name">
-                                <p>에스프레소</p>
-                                <span>Espresso</span>
-                            </div>
-                            <p>4.0</p>
-                        </div>
-                        <div>
-                            <div class="menu-name">
-                                <p>에스프레소</p>
-                                <span>Espresso</span>
-                            </div>
-                            <p>4.0</p>
-                        </div>
-                        <div>
-                            <div class="menu-name">
-                                <p>에스프레소</p>
-                                <span>Espresso</span>
-                            </div>
-                            <p>4.0</p>
-                        </div>
-                        <div>
-                            <div class="menu-name">
-                                <p>에스프레소</p>
-                                <span>Espresso</span>
-                            </div>
-                            <p>4.0</p>
+                        <div v-for="beverage in menus" :key="beverage">
+                            <template v-if="beverage.menuGroupId === 3">
+                                <div class="menu-name">
+                                    <p>{{ beverage.name }}</p>
+                                    <span>{{ beverage.engName }}</span>
+                                </div>
+                                <p>{{ beverage.price }}</p>
+                            </template>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="menu-body">
                     <div>
@@ -186,73 +63,14 @@
                         <p>Regular</p>
                         <p>Large</p>
                     </div>
-                    <div>
-                        <div class="menu-name">
-                            <p>에스프레소</p>
-                            <span>Espresso</span>
-                        </div>
-                        <p>4.0</p>
-                    </div>
-                    <div>
-                        <div class="menu-name">
-                            <p>에스프레소</p>
-                            <span>Espresso</span>
-                        </div>
-                        <p>4.0</p>
-                    </div>
-                    <div>
-                        <div class="menu-name">
-                            <p>에스프레소</p>
-                            <span>Espresso</span>
-                        </div>
-                        <p>4.0</p>
-                        <p>5.0</p>
-                    </div>
-                    <div>
-                        <div class="menu-name">
-                            <p>에스프레소</p>
-                            <span>Espresso</span>
-                        </div>
-                        <p>4.0</p>
-                        <p>5.0</p>
-                    </div>
-                    <div>
-                        <div class="menu-name">
-                            <p>에스프레소</p>
-                            <span>Espresso</span>
-                        </div>
-                        <p>4.0</p>
-                        <p>5.0</p>
-                    </div>
-                    <div>
-                        <div class="menu-name">
-                            <p>에스프레소</p>
-                            <span>Espresso</span>
-                        </div>
-                        <p>4.0</p>
-                    </div>
-                    <div>
-                        <div class="menu-name">
-                            <p>에스프레소</p>
-                            <span>Espresso</span>
-                        </div>
-                        <p>4.0</p>
-                        <p>5.0</p>
-                    </div>
-                    <div>
-                        <div class="menu-name">
-                            <p>에스프레소</p>
-                            <span>Espresso</span>
-                        </div>
-                        <p>4.0</p>
-                        <p>5.0</p>
-                    </div>
-                    <div>
-                        <div class="menu-name">
-                            <p>에스프레소</p>
-                            <span>Espresso</span>
-                        </div>
-                        <p>4.0</p>
+                    <div v-for="beverage in menus" :key="beverage">
+                        <template v-if="beverage.menuGroupId === 4">
+                            <div class="menu-name">
+                                <p>{{ beverage.name }}</p>
+                                <span>{{ beverage.engName }}</span>
+                            </div>
+                            <p>{{ beverage.price }}</p>
+                        </template>
                     </div>
                 </div>
             </div>

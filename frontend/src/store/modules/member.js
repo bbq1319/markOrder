@@ -36,6 +36,12 @@ const mutations = {
 	SET_ROLES(state, roles) {
 		state.roles = roles;
 	},
+	DELETE_ALL_STATE(state) {
+		state.token = '';
+		state.memberId = '';
+		state.name = '';
+		state.roles = [];
+	}
 }
 
 const actions = {

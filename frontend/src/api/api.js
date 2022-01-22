@@ -16,11 +16,12 @@ function createTokenInstance() {
 export const tokenInstance = createTokenInstance();
 
 function doLogin(data) {
+    console.log("===doLogin===")
     return instance.post(`/api/v1/login`, data);
-    // return axios.post(`${config.baseUrl}/api/v1/login`, data);
 }
 
 function getOptionList() {
+    console.log("===getOptionList===")
     return instance.get(`/api/v1/option`);
 }
 

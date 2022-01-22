@@ -32,6 +32,8 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
 	const token = store.getters["member/GET_TOKEN"];
+	console.log(to.name);
+
 	if (to.name !== "Login" && token == '')
 		next('/login');
 	else if (to.name == "Login" && token != '')

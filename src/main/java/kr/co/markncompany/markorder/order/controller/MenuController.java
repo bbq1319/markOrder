@@ -25,14 +25,13 @@ import java.util.List;
 @RequestMapping("/api/v1/menu")
 public class MenuController {
 
-    private final TokenUtil tokenUtil;
     private final MenuService menuService;
     private final MenuRepository menuRepository;
     private final MenuCustomRepository menuCustomRepository;
 
     @GetMapping("")
     public ResponseEntity menu(HttpServletRequest request) {
-        if (tokenUtil.checkJwt(request))
+        if (!TokenUtil.checkJwt(request))
             return new ResponseEntity(new ErrorResponse("invalid token"), HttpStatus.UNAUTHORIZED);
 
         List<MenuDto> menuList = menuCustomRepository.getMenuList();

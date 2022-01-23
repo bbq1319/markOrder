@@ -10,15 +10,15 @@
                         <p>Regular</p>
                         <p>Large</p>
                     </div>
-                    <div v-for="beverage in menus" :key="beverage">
-                        <template v-if="beverage.menuGroupId === 1">
+                    <template v-for="beverage in menus" :key="beverage">
+                        <div v-if="beverage.menuGroupId === 1" @click="openModal(beverage)">
                             <div class="menu-name">
                                 <p>{{ beverage.name }}</p>
                                 <span>{{ beverage.engName }}</span>
                             </div>
                             <p>{{ beverage.price }}</p>
-                        </template>
-                    </div>
+                        </div>
+                    </template>
                 </div>
 
                 <div>
@@ -63,38 +63,62 @@
                         <p>Regular</p>
                         <p>Large</p>
                     </div>
-                    <div v-for="beverage in menus" :key="beverage">
-                        <template v-if="beverage.menuGroupId === 4">
+                    <template v-for="beverage in menus" :key="beverage">
+                        <div v-if="beverage.menuGroupId === 4" @click="openModal">
                             <div class="menu-name">
                                 <p>{{ beverage.name }}</p>
                                 <span>{{ beverage.engName }}</span>
                             </div>
                             <p>{{ beverage.price }}</p>
-                        </template>
-                    </div>
+                        </div>
+                    </template>
                 </div>
             </div>
         </div>
+
+        <OrderModal v-if="showModal" :beverage="beverage" @click="closeModal">
+<!--            <template v-slot:header>-->
+<!--                <p>{{headerMsg}}</p>-->
+<!--            </template>-->
+        </OrderModal>
     </div>
 </template>
 
 <script>
 import SideMenu from '@/components/common/SideMenu';
+import OrderModal from '@/components/order/OrderModal';
 import {mapGetters, mapActions} from "vuex";
 
 export default {
+    data() {
+        return {
+            showModal: false,
+            headerMsg: '헤더입니다.',
+            msg: '내용입니다.',
+            beverage: {}
+        }
+    },
     computed: {
         ...mapGetters({
             menus: 'menu/GET_MENUS',
-        })
+        }),
     },
     methods: {
         ...mapActions({
             GET_MENU_LIST: 'menu/GET_MENU_LIST'
-        })
+        }),
+        openModal(beverage) {
+            this.beverage = beverage;
+            console.log(this.beverage);
+            this.showModal = !this.showModal;
+        },
+        closeModal() {
+            this.showModal = !this.showModal;
+        }
     },
     components: {
         'SideMenu': SideMenu,
+        'OrderModal': OrderModal,
     },
     created() {
         this.GET_MENU_LIST();

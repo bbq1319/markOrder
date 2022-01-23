@@ -1,6 +1,7 @@
 package kr.co.markncompany.markorder.order.controller;
 
 import kr.co.markncompany.markorder.common.transfer.ErrorResponse;
+import kr.co.markncompany.markorder.order.Menu;
 import kr.co.markncompany.markorder.order.dto.MenuDto;
 import kr.co.markncompany.markorder.order.dto.MenuGroupDto;
 import kr.co.markncompany.markorder.order.dto.MenuOptionGroupDto;
@@ -14,11 +15,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @AllArgsConstructor
@@ -39,6 +42,22 @@ public class MenuController {
             return ResponseEntity.ok().body(menuList);
         else
             return ResponseEntity.badRequest().body("메뉴 조회에 실패했습니다.");
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity getMenuInfo(@PathVariable Optional<Long> id, HttpServletRequest request) {
+        if (!TokenUtil.checkJwt(request))
+            return new ResponseEntity(new ErrorResponse("invalid token"), HttpStatus.UNAUTHORIZED);
+
+        if (id.isPresent()) {
+            Long menuId = id.get();
+            Menu menu = menuRepository.findById(menuId)
+                    .orElseThrow(() -> new IllegalArgumentException("메뉴 조회 실패"));
+
+            return ResponseEntity.ok().body(menu);
+        }
+
+        return ResponseEntity.badRequest().body("메뉴 ID 조회 실패");
     }
 
     /**

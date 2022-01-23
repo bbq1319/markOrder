@@ -17,7 +17,6 @@ public class MenuOptionGroup {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private Long orderPrice;
-    private int count;
 
     @ManyToOne
     @JoinColumn(name = "menu_id")
@@ -27,9 +26,10 @@ public class MenuOptionGroup {
     @JoinColumn(name = "option_group_id")
     private OptionGroup optionGroup;
 
-    public MenuOptionGroup(MenuOptionGroupDto menuOptionGroupDto) {
+    public MenuOptionGroup(MenuOptionGroupDto menuOptionGroupDto, Menu menu, OptionGroup optionGroup) {
         this.orderPrice = menuOptionGroupDto.getOrderPrice();
-        this.count = menuOptionGroupDto.getCount();
+        this.menu = menu;
+        this.optionGroup = optionGroup;
     }
 
 }

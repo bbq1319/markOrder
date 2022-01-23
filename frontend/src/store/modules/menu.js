@@ -1,4 +1,4 @@
-import { getMenuList } from "@/api/menu";
+import { getMenuList, getMenuInfo } from "@/api/menu";
 
 const state = {
     menus: [{
@@ -34,6 +34,17 @@ const actions = {
             console.log(error.response);
         });
     },
+    GET_MENU_INFO(context, id) {
+        getMenuInfo({
+            id
+        }).then(res => {
+            console.log(res);
+            context.commit("SET_MENU_INFO", res.data);
+        }).catch(error => {
+            console.log(error);
+            console.log(error.response);
+        })
+    }
 }
 
 export default {

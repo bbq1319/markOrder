@@ -2,8 +2,11 @@ package kr.co.markncompany.markorder.order.dto;
 
 import com.querydsl.core.annotations.QueryProjection;
 import kr.co.markncompany.markorder.order.Menu;
+import kr.co.markncompany.markorder.order.MenuOptionGroup;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -14,6 +17,8 @@ public class MenuDto {
     private String engName;
     private String price;
     private long menuGroupId;
+
+    private List<MenuOptionGroup> menuOptionGroupList;
 
     // 메뉴 조회
     @QueryProjection

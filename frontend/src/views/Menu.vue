@@ -10,8 +10,8 @@
                         <p>Regular</p>
                         <p>Large</p>
                     </div>
-                    <template v-for="beverage in menus" :key="beverage">
-                        <div v-if="beverage.menuGroupId === 1" @click="openModal(beverage)">
+                    <template v-for="beverage in menus" :key="beverage.id">
+                        <div v-if="beverage.menuGroupId === 1" @click="openModal(beverage.id)">
                             <div class="menu-name">
                                 <p>{{ beverage.name }}</p>
                                 <span>{{ beverage.engName }}</span>
@@ -63,7 +63,7 @@
                         <p>Regular</p>
                         <p>Large</p>
                     </div>
-                    <template v-for="beverage in menus" :key="beverage">
+                    <template v-for="beverage in menus" :key="beverage.id">
                         <div v-if="beverage.menuGroupId === 4" @click="openModal">
                             <div class="menu-name">
                                 <p>{{ beverage.name }}</p>
@@ -95,7 +95,7 @@ export default {
             showModal: false,
             headerMsg: '헤더입니다.',
             msg: '내용입니다.',
-            beverage: {}
+            beverageId: ''
         }
     },
     computed: {
@@ -107,9 +107,10 @@ export default {
         ...mapActions({
             GET_MENU_LIST: 'menu/GET_MENU_LIST'
         }),
-        openModal(beverage) {
-            this.beverage = beverage;
-            console.log(this.beverage);
+        openModal(id) {
+            this.beverageId = id;
+            console.log(id);
+            console.log(this.beverageId);
             this.showModal = !this.showModal;
         },
         closeModal() {

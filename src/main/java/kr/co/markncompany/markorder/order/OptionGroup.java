@@ -1,5 +1,7 @@
 package kr.co.markncompany.markorder.order;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import kr.co.markncompany.markorder.common.BaseEntity;
 import kr.co.markncompany.markorder.order.dto.OptionGroupDto;
 import lombok.Getter;
@@ -15,6 +17,7 @@ import java.util.List;
 public class OptionGroup extends BaseEntity {
 
     @Id
+    @Column(name = "option_group_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String groupName;
@@ -24,9 +27,11 @@ public class OptionGroup extends BaseEntity {
 
     @OneToMany
     @JoinColumn(name = "option_group_id")
+    @JsonManagedReference
     private List<Options> options = new ArrayList<>();
 
     @OneToMany(mappedBy = "optionGroup")
+    @JsonBackReference
     private List<MenuOptionGroup> menuOptionGroups = new ArrayList<>();
 
     public OptionGroup(OptionGroupDto optionGroupDto) {

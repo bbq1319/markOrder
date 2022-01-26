@@ -51,6 +51,7 @@ public class MenuController {
 
         if (id.isPresent()) {
             Long menuId = id.get();
+            System.out.println(menuId);
             Menu menu = menuRepository.findById(menuId)
                     .orElseThrow(() -> new IllegalArgumentException("메뉴 조회 실패"));
 

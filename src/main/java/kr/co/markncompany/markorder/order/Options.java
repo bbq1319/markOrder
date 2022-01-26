@@ -1,5 +1,6 @@
 package kr.co.markncompany.markorder.order;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import kr.co.markncompany.markorder.order.dto.OptionDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ import javax.persistence.*;
 public class Options {
 
     @Id
+    @Column(name = "option_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String price;
@@ -19,6 +21,7 @@ public class Options {
 
     @ManyToOne
     @JoinColumn(name = "option_group_id", updatable = false)
+    @JsonBackReference
     private OptionGroup optionGroup;
 
     public Options(OptionDto optionDto, OptionGroup optionGroup) {

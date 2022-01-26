@@ -49,9 +49,9 @@ public class MenuService {
                 .orElseThrow(() -> new IllegalArgumentException("메뉴를 찾을 수 없습니다.."));
         OptionGroup optionGroup = optionGroupRepository.findById(menuOptionGroupDto.getOptionGroupId())
                 .orElseThrow(() -> new IllegalArgumentException("메뉴그룹을 찾을 수 없습니다.."));
-        MenuOptionGroup menuOptionGroup = new MenuOptionGroup(menuOptionGroupDto, menu, optionGroup);
+        MenuOptionGroup menuOptionGroup = new MenuOptionGroup(menu, optionGroup);
         MenuOptionGroup save = menuOptionGroupRepository.save(menuOptionGroup);
-        return save.getId();
+        return 1;
     }
 
 }

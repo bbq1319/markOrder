@@ -33,11 +33,6 @@ import {mapActions} from "vuex";
 
 export default {
     props: ["beverage"],
-    setup(props) {
-        console.log("setup");
-        const beverage = {...props}.beverage;
-        return beverage;
-    },
     methods: {
         ...mapActions({
             GET_MENU_INFO: 'menu/GET_MENU_INFO'
@@ -45,9 +40,9 @@ export default {
     },
     created() {
         console.log("created");
-        const beverage = this.beverage;
-        console.log(beverage.id);
-        this.GET_MENU_INFO(beverage.id);
+        const beverageId = this.beverage;
+        console.log(beverageId)
+        this.GET_MENU_INFO(beverageId);
     }
 }
 </script>

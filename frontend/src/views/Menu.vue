@@ -76,7 +76,7 @@
             </div>
         </div>
 
-        <OrderModal v-if="showModal" :beverage="beverage" @click="closeModal">
+        <OrderModal v-if="showModal" :beverage="beverageId" @click="closeModal">
 <!--            <template v-slot:header>-->
 <!--                <p>{{headerMsg}}</p>-->
 <!--            </template>-->
@@ -109,8 +109,6 @@ export default {
         }),
         openModal(id) {
             this.beverageId = id;
-            console.log(id);
-            console.log(this.beverageId);
             this.showModal = !this.showModal;
         },
         closeModal() {

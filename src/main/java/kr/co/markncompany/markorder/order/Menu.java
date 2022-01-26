@@ -1,5 +1,6 @@
 package kr.co.markncompany.markorder.order;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import kr.co.markncompany.markorder.common.BaseEntity;
 import kr.co.markncompany.markorder.order.dto.MenuDto;
 import lombok.Getter;
@@ -15,6 +16,7 @@ import java.util.List;
 public class Menu extends BaseEntity {
 
     @Id
+    @Column(name = "menu_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
@@ -23,6 +25,7 @@ public class Menu extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "menu_group_id", updatable = false)
+    @JsonManagedReference
     private MenuGroup menuGroup;
 
     @OneToMany(mappedBy = "menu")

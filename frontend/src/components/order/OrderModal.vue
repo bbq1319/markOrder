@@ -39,9 +39,7 @@ export default {
         })
     },
     created() {
-        console.log("created");
         const beverageId = this.beverage;
-        console.log(beverageId)
         this.GET_MENU_INFO(beverageId);
     }
 }

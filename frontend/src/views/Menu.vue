@@ -77,9 +77,6 @@
         </div>
 
         <OrderModal v-if="showModal" :beverage="beverageId" @click="closeModal">
-<!--            <template v-slot:header>-->
-<!--                <p>{{headerMsg}}</p>-->
-<!--            </template>-->
         </OrderModal>
     </div>
 </template>

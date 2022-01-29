@@ -3,10 +3,6 @@
         <SideMenu></SideMenu>
 
         <div>Hello World</div>
-        <div v-for="menu in menus" :key="menu">
-            <p>이름 : {{ menu.name }}</p>
-            <p>가격 : {{ menu.price }}</p>
-        </div>
 
         <p>{{ token }}</p>
     </div>

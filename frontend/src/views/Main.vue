@@ -1,9 +1,6 @@
 <template>
     <div>
         <SideMenu></SideMenu>
-
-        <div>Hello World</div>
-
         <p>{{ token }}</p>
     </div>
 </template>

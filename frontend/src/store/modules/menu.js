@@ -8,18 +8,25 @@ const state = {
         price: '',
         menuGroupId: '',
     }],
+    menuInfo: [],
 }
 
 const getters = {
     GET_MENUS(state) {
         return state.menus;
     },
+    GET_INFO(state) {
+        return state.menuInfo;
+    }
 }
 
 const mutations = {
     SET_MENUS(state, data) {
         state.menus = data;
     },
+    SET_MENU_INFO(state, data) {
+        state.menuInfo = data;
+    }
 }
 
 const actions = {

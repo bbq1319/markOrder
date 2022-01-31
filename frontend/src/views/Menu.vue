@@ -76,7 +76,7 @@
             </div>
         </div>
 
-        <OrderModal v-if="showModal" :beverage="beverageId" @click="closeModal">
+        <OrderModal v-if="showModal" :beverage="beverageId" @closeModal="closeModal">
         </OrderModal>
     </div>
 </template>

@@ -5,20 +5,63 @@
 
                 <div class="modal-header">
                     <slot name="header">
-                        {{ beverage.name }}
-                        {{ beverage.engName }}
+                        <p>{{menuInfo.name}}</p>
+                        <span>{{menuInfo.engName}}</span>
                     </slot>
                 </div>
 
                 <div class="modal-body">
                     <slot name="body">
-                        {{ beverage.price }}
+                        <p>{{menuInfo.price}}</p>
+
+                        <div class="option-container" v-for="og in menuInfo.menuOptionGroups" :key="og.id">
+                            <p>{{og.optionGroup.groupName}}</p>
+                            <ul v-for="options in og.optionGroup.options" :key="options.id">
+                                <li>
+                                    <input type="radio" id="{{options.id}}" name="temp" value="1" />
+                                    <label for="{{options.id}}"><span>{{options.name}}</span></label>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="option-container">
+                            <p>온도</p>
+                            <ul>
+                                <li>
+                                    <input type="radio" id="temp1" name="temp" value="1" />
+                                    <label for="temp1"><span>아이스</span></label>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <input type="radio" id="temp2" name="temp" value="2" />
+                                    <label for="temp2"><span>힛</span></label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="option-container">
+                            <p>온도</p>
+                            <ul>
+                                <li>
+                                    <input type="radio" id="temp3" name="temp" value="1" />
+                                    <label for="temp3"><span>아이스</span></label>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <input type="radio" id="temp4" name="temp" value="2" />
+                                    <label for="temp4"><span>힛</span></label>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <p>{{menuInfo.menuOptionGroups}}</p>
                     </slot>
                 </div>
 
                 <div class="modal-footer">
                     <slot name="footer">
-                        <button class="modal-default-button" v-bind:click="$emit('close')">
+                        <button class="modal-default-button" @click="$emit('closeModal')">
                             확인
                         </button>
                     </slot>
@@ -29,23 +72,89 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import {mapGetters, mapActions} from "vuex";
 
 export default {
     props: ["beverage"],
+    computed: {
+        ...mapGetters({
+            menuInfo: 'menu/GET_INFO',
+        })
+    },
     methods: {
         ...mapActions({
             GET_MENU_INFO: 'menu/GET_MENU_INFO'
         })
     },
-    created() {
+    async created() {
         const beverageId = this.beverage;
-        this.GET_MENU_INFO(beverageId);
-    }
+        await this.GET_MENU_INFO(beverageId);
+    },
 }
 </script>
 
-<style>
+<style scoped>
+ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.option-container {
+    position: relative;
+    padding: 5px 0;
+}
+
+.option-container + .option-container {
+    border-top: 1px black solid;
+}
+
+.option-container p {
+    margin: 10px 0 15px 30px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.option-container ul {
+    margin-top: 10px;
+}
+
+.option-container ul li {
+    margin-bottom: 10px;
+}
+
+.option-container ul li:after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+.option-container ul li input[type="radio"] {
+    display: none;
+}
+
+.option-container ul li input[type="radio"] + label {
+    width: 17px;
+    height: 17px;
+    float: right;
+    margin-right: 30px;
+    border-radius: 3px;
+    cursor: pointer;
+    background: #4caf50;
+}
+
+.option-container ul li input[type="radio"]:checked  + label {
+    background: url("~@/assets/check_radio_sheet.png") #4caf50 -19px top no-repeat;
+    float: right;
+}
+
+.option-container ul li input[type="radio"] + label span {
+    position: absolute;
+    left: 30px;
+    display: block;
+}
+
+
+
 .modal-mask {
     position: fixed;
     z-index: 9998;

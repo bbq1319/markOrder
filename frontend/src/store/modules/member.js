@@ -57,7 +57,6 @@ const actions = {
 
 			router.push('/main');
 		}).catch(error => {
-			console.log(error);
 			context.dispatch('response/ERROR_LOGIN', error.response, {root: true});
 		});
 	}

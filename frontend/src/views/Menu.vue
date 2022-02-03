@@ -118,6 +118,7 @@ export default {
     },
     created() {
         this.GET_MENU_LIST();
+        console.log(this);
     }
 }
 </script>

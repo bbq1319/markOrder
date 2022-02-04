@@ -35,7 +35,7 @@
                             <ul>
                                 <li>
                                     <input type="radio" id="temp2" name="temp" value="2" />
-                                    <label for="temp2"><span>힛</span></label>
+                                    <label for="temp2"><span>핫</span></label>
                                 </li>
                             </ul>
                         </div>
@@ -50,7 +50,7 @@
                             <ul>
                                 <li>
                                     <input type="radio" id="temp4" name="temp" value="2" />
-                                    <label for="temp4"><span>힛</span></label>
+                                    <label for="temp4"><span>핫</span></label>
                                 </li>
                             </ul>
                         </div>

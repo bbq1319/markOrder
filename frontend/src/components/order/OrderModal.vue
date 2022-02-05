@@ -39,21 +39,6 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="option-container">
-                            <p>온도</p>
-                            <ul>
-                                <li>
-                                    <input type="radio" id="temp3" name="temp" value="1" />
-                                    <label for="temp3"><span>아이스</span></label>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li>
-                                    <input type="radio" id="temp4" name="temp" value="2" />
-                                    <label for="temp4"><span>핫</span></label>
-                                </li>
-                            </ul>
-                        </div>
 
                         <p>{{menuInfo.menuOptionGroups}}</p>
                     </slot>

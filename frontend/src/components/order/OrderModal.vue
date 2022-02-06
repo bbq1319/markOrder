@@ -24,22 +24,6 @@
                             </ul>
                         </div>
 
-                        <div class="option-container">
-                            <p>온도</p>
-                            <ul>
-                                <li>
-                                    <input type="radio" id="temp1" name="temp" value="1" />
-                                    <label for="temp1"><span>아이스</span></label>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li>
-                                    <input type="radio" id="temp2" name="temp" value="2" />
-                                    <label for="temp2"><span>핫</span></label>
-                                </li>
-                            </ul>
-                        </div>
-
                         <p>{{menuInfo.menuOptionGroups}}</p>
                     </slot>
                 </div>
@@ -57,24 +41,25 @@
 </template>
 
 <script>
-import {mapGetters, mapActions} from "vuex";
-
 export default {
-    props: ["beverage"],
-    computed: {
-        ...mapGetters({
-            menuInfo: 'menu/GET_INFO',
-        })
+    props: ["menuInfo"],
+    // computed: {
+    //     ...mapGetters({
+    //         menuInfo: 'menu/GET_INFO',
+    //     })
+    // },
+    // methods: {
+    //     ...mapActions({
+    //         GET_MENU_INFO: 'menu/GET_MENU_INFO'
+    //     })
+    // },
+    created() {
+        // this.menuInfo = [];
+        // const beverageId = this.beverage;
+        // await this.GET_MENU_INFO(beverageId);
     },
-    methods: {
-        ...mapActions({
-            GET_MENU_INFO: 'menu/GET_MENU_INFO'
-        })
-    },
-    async created() {
-        const beverageId = this.beverage;
-        await this.GET_MENU_INFO(beverageId);
-    },
+    mounted() {
+    }
 }
 </script>
 
@@ -120,7 +105,7 @@ ul {
 .option-container ul li input[type="radio"] + label {
     width: 17px;
     height: 17px;
-    float: right;
+    /*float: right;*/
     margin-right: 30px;
     border-radius: 3px;
     cursor: pointer;
@@ -129,7 +114,7 @@ ul {
 
 .option-container ul li input[type="radio"]:checked  + label {
     background: url("~@/assets/check_radio_sheet.png") #4caf50 -19px top no-repeat;
-    float: right;
+    /*float: right;*/
 }
 
 .option-container ul li input[type="radio"] + label span {
@@ -141,6 +126,7 @@ ul {
 
 
 .modal-mask {
+    overflow: scroll;
     position: fixed;
     z-index: 9998;
     top: 0;
@@ -148,12 +134,11 @@ ul {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, .5);
-    display: table;
     transition: opacity .3s ease;
 }
 
 .modal-wrapper {
-    display: table-cell;
+    margin: 40px 0;
     vertical-align: middle;
 }
 

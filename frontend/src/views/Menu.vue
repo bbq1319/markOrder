@@ -76,7 +76,7 @@
             </div>
         </div>
 
-        <OrderModal v-if="showModal" :beverage="beverageId" @closeModal="closeModal">
+        <OrderModal v-if="showModal" :menuInfo="menuInfo" @closeModal="closeModal">
         </OrderModal>
     </div>
 </template>
@@ -92,21 +92,33 @@ export default {
             showModal: false,
             headerMsg: '헤더입니다.',
             msg: '내용입니다.',
-            beverageId: ''
         }
     },
     computed: {
         ...mapGetters({
             menus: 'menu/GET_MENUS',
         }),
+        ...mapGetters({
+            menuInfo: 'menu/GET_INFO',
+        }),
+    },
+    watch: {
+        menuInfo: function (newVal, oldVal) {
+            console.log("watch!!!!!!")
+            console.log(newVal);
+            console.log(oldVal);
+            this.showModal = !this.showModal;
+        }
     },
     methods: {
         ...mapActions({
             GET_MENU_LIST: 'menu/GET_MENU_LIST'
         }),
-        openModal(id) {
-            this.beverageId = id;
-            this.showModal = !this.showModal;
+        ...mapActions({
+            GET_MENU_INFO: 'menu/GET_MENU_INFO'
+        }),
+        async openModal(id) {
+            await this.GET_MENU_INFO(id);
         },
         closeModal() {
             this.showModal = !this.showModal;
@@ -118,7 +130,6 @@ export default {
     },
     created() {
         this.GET_MENU_LIST();
-        console.log(this);
     }
 }
 </script>

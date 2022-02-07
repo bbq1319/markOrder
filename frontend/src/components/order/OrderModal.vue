@@ -49,7 +49,7 @@ export default {
     //     })
     // },
     // methods: {
-    //     ...mapActions({
+    //     ...mapActions ({
     //         GET_MENU_INFO: 'menu/GET_MENU_INFO'
     //     })
     // },

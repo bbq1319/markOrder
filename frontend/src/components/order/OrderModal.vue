@@ -23,8 +23,6 @@
                                 </li>
                             </ul>
                         </div>
-
-                        <p>{{menuInfo.menuOptionGroups}}</p>
                     </slot>
                 </div>
 

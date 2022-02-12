@@ -13,7 +13,6 @@
                 <div class="modal-body">
                     <slot name="body">
                         <p>{{menuInfo.price}}</p>
-
                         <div class="option-container" v-for="og in menuInfo.menuOptionGroups" :key="og.id">
                             <p>{{og.optionGroup.groupName}}</p>
                             <ul v-for="options in og.optionGroup.options" :key="options.id">
@@ -24,6 +23,8 @@
                             </ul>
                         </div>
                     </slot>
+
+                    <p>{{ menuInfo }}</p>
                 </div>
 
                 <div class="modal-footer">
@@ -103,7 +104,7 @@ ul {
 .option-container ul li input[type="radio"] + label {
     width: 17px;
     height: 17px;
-    /*float: right;*/
+    float: left;
     margin-right: 30px;
     border-radius: 3px;
     cursor: pointer;
@@ -112,7 +113,7 @@ ul {
 
 .option-container ul li input[type="radio"]:checked  + label {
     background: url("~@/assets/check_radio_sheet.png") #4caf50 -19px top no-repeat;
-    /*float: right;*/
+    float: left;
 }
 
 .option-container ul li input[type="radio"] + label span {

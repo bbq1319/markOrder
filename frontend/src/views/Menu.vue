@@ -3,7 +3,7 @@
         <SideMenu></SideMenu>
 
         <div class="content">
-            <div style="display: flex">
+            <div class="menu-container">
                 <div class="menu-body">
                     <div>
                         <p>ESPRESSO BEVERAGE</p>
@@ -128,6 +128,11 @@ export default {
 </script>
 
 <style>
+.menu-container {
+    display: flex;
+    justify-content: space-around;
+}
+
 .menu-body div {
     display: flex;
 }

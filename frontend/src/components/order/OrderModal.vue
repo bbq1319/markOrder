@@ -12,29 +12,32 @@
 
                 <div class="modal-body">
                     <slot name="body">
-                        <p>{{price}}</p>
-                        <div class="option-container" v-for="og in menuInfo.menuOptionGroups" :key="og.id">
-                            <p>{{og.optionGroup.groupName}}</p>
-                            <ul>
-                                <li v-for="options in og.optionGroup.options" :key="options.id">
-                                    <input type="radio" :id="options.id" :name="og.optionGroup.id" :value="options.id" :price="options.price" @click="changeOption" />
-                                    <label :for="options.id"><span>{{options.name}}</span></label>
-                                </li>
-                            </ul>
-                        </div>
+                        <form @submit.prevent="orderMenu">
+                            <p>{{price}}</p>
+                            <div class="option-container" v-for="og in menuInfo.menuOptionGroups" :key="og.id">
+                                <p>{{og.optionGroup.groupName}}</p>
+                                <ul>
+                                    <li v-for="options in og.optionGroup.options" :key="options.id">
+                                        <input type="radio" :id="options.id" :name="og.optionGroup.id" :value="options.id" :price="options.price" v-model="og.optionGroup.id" @click="changeOption" />
+                                        <label :for="options.id"><span>{{options.name}}</span></label>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="btn-group">
+                                <button class="modal-default-button" type="submit">
+                                    확인
+                                </button>
+                                <button class="modal-error-button" @click="$emit('closeModal')">
+                                    취소
+                                </button>
+                            </div>
+                        </form>
                     </slot>
                 </div>
 
                 <div class="modal-footer">
                     <slot name="footer">
-                        <div class="btn-group">
-                            <button class="modal-default-button">
-                                확인
-                            </button>
-                            <button class="modal-error-button" @click="$emit('closeModal')">
-                                취소
-                            </button>
-                        </div>
                     </slot>
                 </div>
             </div>
@@ -47,16 +50,51 @@ export default {
     props: ["menuInfo"],
     data() {
         return {
-            price: this.menuInfo.price
+            price: this.menuInfo.price,
+            menuOptionGroups: this.menuInfo.menuOptionGroups,
+            optionPrice: []
         }
     },
     methods: {
-        changeOption: function (event) {
-            const optPrice = event.target.getAttribute('price')
-            console.log(optPrice);
-            this.price = Number(this.price) + Number(optPrice);
+        changeOption: function () {
+            // console.log("==changeOption==");
+            // const optPrice = event.target.getAttribute('price')
+            // console.log(optPrice);
+            // console.log(event);
+            // this.price = Number(this.price) + Number(optPrice);
+        },
+        orderMenu() {
+            console.log(this.menuOptionGroups);
+            console.log(this.menuInfo);
+            console.log(this.price);
+
+
         }
-    }
+    },
+    created() {
+        this.menuOptionGroups.filter(
+            mog => {
+                const key = mog.optionGroup.id;
+
+                console.log(key);
+
+                let object = {};
+                object[key] = mog.optionGroup;
+                Object.assign(this.$data, object);
+                this.$watch(key, function (val) {
+                    console.log(val);
+                }, {deep: true});
+            }
+        )
+    },
+    // watch: {
+    //     $data: {
+    //         handler: function (val, oldVal) {
+    //             console.log(val, oldVal);
+    //         },
+    //         deep: true,
+    //     }
+    // }
 }
 </script>
 

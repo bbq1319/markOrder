@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class MenuOptionGroupDto {
 
-    private long menuId;
-    private long optionGroupId;
+    private String menuId;
+    private String optionGroupId;
 
 }

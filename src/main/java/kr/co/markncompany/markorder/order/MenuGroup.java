@@ -17,7 +17,7 @@ public class MenuGroup {
     @Id
     @Column(name = "menu_group_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private String id;
     private String groupName;
 
     @OneToMany

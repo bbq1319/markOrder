@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class MenuGroupDto {
 
-    private long id;
+    private String id;
     private String groupName;
 
 }

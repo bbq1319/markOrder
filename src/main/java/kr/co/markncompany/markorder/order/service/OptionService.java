@@ -21,19 +21,17 @@ public class OptionService {
     private final OptionGroupRepository optionGroupRepository;
 
     @Transactional
-    public long insertOption(OptionDto optionDto) {
+    public void insertOption(OptionDto optionDto) {
         OptionGroup optionGroup = optionGroupRepository.findById(optionDto.getOptionGroupId())
                 .orElseThrow(() -> new IllegalArgumentException("옵션그룹을 찾을 수 없습니다.."));
         Options options = new Options(optionDto, optionGroup);
-        Options save = optionRepository.save(options);
-        return save.getId();
+        optionRepository.save(options);
     }
 
     @Transactional
-    public long insertOptionGroup(OptionGroupDto optionGroupDto) {
+    public void insertOptionGroup(OptionGroupDto optionGroupDto) {
         OptionGroup optionGroup = new OptionGroup(optionGroupDto);
-        OptionGroup save = optionGroupRepository.save(optionGroup);
-        return save.getId();
+        optionGroupRepository.save(optionGroup);
     }
 
 }

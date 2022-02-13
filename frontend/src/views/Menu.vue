@@ -8,10 +8,9 @@
                     <div>
                         <p>ESPRESSO BEVERAGE</p>
                         <p>Regular</p>
-                        <p>Large</p>
                     </div>
                     <template v-for="beverage in menus" :key="beverage.id">
-                        <div v-if="beverage.menuGroupId === 1" @click="openModal(beverage.id)">
+                        <div v-if="beverage.menuGroupId === 'MG0001'" @click="openModal(beverage.id)">
                             <div class="menu-name">
                                 <p>{{ beverage.name }}</p>
                                 <span>{{ beverage.engName }}</span>
@@ -26,10 +25,9 @@
                         <div>
                             <p>ESPRESSO BEVERAGE</p>
                             <p>Regular</p>
-                            <p>Large</p>
                         </div>
                         <div v-for="beverage in menus" :key="beverage">
-                            <template v-if="beverage.menuGroupId === 2">
+                            <template v-if="beverage.menuGroupId === 'MG0002'">
                                 <div class="menu-name">
                                     <p>{{ beverage.name }}</p>
                                     <span>{{ beverage.engName }}</span>
@@ -43,10 +41,9 @@
                         <div>
                             <p>ESPRESSO BEVERAGE</p>
                             <p>Regular</p>
-                            <p>Large</p>
                         </div>
                         <div v-for="beverage in menus" :key="beverage">
-                            <template v-if="beverage.menuGroupId === 3">
+                            <template v-if="beverage.menuGroupId === 'MG0003'">
                                 <div class="menu-name">
                                     <p>{{ beverage.name }}</p>
                                     <span>{{ beverage.engName }}</span>
@@ -61,10 +58,9 @@
                     <div>
                         <p>ESPRESSO BEVERAGE</p>
                         <p>Regular</p>
-                        <p>Large</p>
                     </div>
                     <template v-for="beverage in menus" :key="beverage.id">
-                        <div v-if="beverage.menuGroupId === 4" @click="openModal">
+                        <div v-if="beverage.menuGroupId === 'MG0004'" @click="openModal">
                             <div class="menu-name">
                                 <p>{{ beverage.name }}</p>
                                 <span>{{ beverage.engName }}</span>
@@ -103,10 +99,7 @@ export default {
         }),
     },
     watch: {
-        menuInfo: function (newVal, oldVal) {
-            console.log("watch!!!!!!")
-            console.log(newVal);
-            console.log(oldVal);
+        menuInfo: function () {
             this.showModal = !this.showModal;
         }
     },
@@ -117,8 +110,8 @@ export default {
         ...mapActions({
             GET_MENU_INFO: 'menu/GET_MENU_INFO'
         }),
-        async openModal(id) {
-            await this.GET_MENU_INFO(id);
+        openModal(id) {
+            this.GET_MENU_INFO(id);
         },
         closeModal() {
             this.showModal = !this.showModal;

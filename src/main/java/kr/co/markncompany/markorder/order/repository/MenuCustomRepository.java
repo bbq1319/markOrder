@@ -26,7 +26,7 @@ public class MenuCustomRepository {
                 .fetch();
     }
 
-    public MenuDto getMenuInfoByMenuId(Long id) {
+    public MenuDto getMenuInfoByMenuId(String id) {
         return queryFactory
                 .select(Projections.constructor(MenuDto.class,
                         menu

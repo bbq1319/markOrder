@@ -12,26 +12,29 @@
 
                 <div class="modal-body">
                     <slot name="body">
-                        <p>{{menuInfo.price}}</p>
+                        <p>{{price}}</p>
                         <div class="option-container" v-for="og in menuInfo.menuOptionGroups" :key="og.id">
                             <p>{{og.optionGroup.groupName}}</p>
-                            <ul v-for="options in og.optionGroup.options" :key="options.id">
-                                <li>
-                                    <input type="radio" id="{{options.id}}" name="temp" value="1" />
-                                    <label for="{{options.id}}"><span>{{options.name}}</span></label>
+                            <ul>
+                                <li v-for="options in og.optionGroup.options" :key="options.id">
+                                    <input type="radio" :id="options.id" :name="og.optionGroup.id" :value="options.id" :price="options.price" @click="changeOption" />
+                                    <label :for="options.id"><span>{{options.name}}</span></label>
                                 </li>
                             </ul>
                         </div>
                     </slot>
-
-                    <p>{{ menuInfo }}</p>
                 </div>
 
                 <div class="modal-footer">
                     <slot name="footer">
-                        <button class="modal-default-button" @click="$emit('closeModal')">
-                            확인
-                        </button>
+                        <div class="btn-group">
+                            <button class="modal-default-button">
+                                확인
+                            </button>
+                            <button class="modal-error-button" @click="$emit('closeModal')">
+                                취소
+                            </button>
+                        </div>
                     </slot>
                 </div>
             </div>
@@ -42,22 +45,17 @@
 <script>
 export default {
     props: ["menuInfo"],
-    // computed: {
-    //     ...mapGetters({
-    //         menuInfo: 'menu/GET_INFO',
-    //     })
-    // },
-    // methods: {
-    //     ...mapActions ({
-    //         GET_MENU_INFO: 'menu/GET_MENU_INFO'
-    //     })
-    // },
-    created() {
-        // this.menuInfo = [];
-        // const beverageId = this.beverage;
-        // await this.GET_MENU_INFO(beverageId);
+    data() {
+        return {
+            price: this.menuInfo.price
+        }
     },
-    mounted() {
+    methods: {
+        changeOption: function (event) {
+            const optPrice = event.target.getAttribute('price')
+            console.log(optPrice);
+            this.price = Number(this.price) + Number(optPrice);
+        }
     }
 }
 </script>
@@ -98,28 +96,40 @@ ul {
 }
 
 .option-container ul li input[type="radio"] {
-    display: none;
+    float: left;
+    cursor: pointer;
 }
 
 .option-container ul li input[type="radio"] + label {
-    width: 17px;
-    height: 17px;
     float: left;
-    margin-right: 30px;
-    border-radius: 3px;
+    margin-left: 15px;
     cursor: pointer;
-    background: #4caf50;
 }
 
-.option-container ul li input[type="radio"]:checked  + label {
-    background: url("~@/assets/check_radio_sheet.png") #4caf50 -19px top no-repeat;
-    float: left;
+
+
+.btn-group {
+    display: flex;
+    justify-content: center;
 }
 
-.option-container ul li input[type="radio"] + label span {
-    position: absolute;
-    left: 30px;
-    display: block;
+.btn-group button {
+    width: 100%;
+    height: 50px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-default-button {
+    background-color: #4caf50;
+}
+
+.modal-error-button {
+    background-color: #f44336;
 }
 
 
@@ -164,14 +174,6 @@ ul {
 
 .modal-body .desc {
     font-size: 14px;
-}
-
-.modal-default-button {
-    width: 100%;
-    height: 50px;
-    border: none;
-    color: white;
-    background-color: #4caf50;
 }
 
 .error {

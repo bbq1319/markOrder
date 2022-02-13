@@ -12,11 +12,11 @@ import java.util.List;
 @NoArgsConstructor
 public class MenuDto {
 
-    private long id;
+    private String id;
     private String name;
     private String engName;
     private String price;
-    private long menuGroupId;
+    private String menuGroupId;
 
     private List<MenuOptionGroup> menuOptionGroupList;
 

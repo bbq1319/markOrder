@@ -28,30 +28,27 @@ public class MenuService {
     private final OptionGroupRepository optionGroupRepository;
 
     @Transactional
-    public long insertMenu(MenuDto menuDto) {
+    public void insertMenu(MenuDto menuDto) {
         MenuGroup menuGroup = menuGroupRepository.findById(menuDto.getMenuGroupId())
                 .orElseThrow(() -> new IllegalArgumentException("메뉴그룹을 찾을 수 없습니다.."));
         Menu menu = new Menu(menuDto, menuGroup);
-        Menu save = menuRepository.save(menu);
-        return save.getId();
+        menuRepository.save(menu);
     }
 
     @Transactional
-    public long insertMenuGroup(MenuGroupDto menuGroupDto) {
+    public void insertMenuGroup(MenuGroupDto menuGroupDto) {
         MenuGroup menuGroup = new MenuGroup(menuGroupDto);
-        MenuGroup save = menuGroupRepository.save(menuGroup);
-        return save.getId();
+        menuGroupRepository.save(menuGroup);
     }
 
     @Transactional
-    public long insertMenuOptionGroup(MenuOptionGroupDto menuOptionGroupDto) {
+    public void insertMenuOptionGroup(MenuOptionGroupDto menuOptionGroupDto) {
         Menu menu = menuRepository.findById(menuOptionGroupDto.getMenuId())
                 .orElseThrow(() -> new IllegalArgumentException("메뉴를 찾을 수 없습니다.."));
         OptionGroup optionGroup = optionGroupRepository.findById(menuOptionGroupDto.getOptionGroupId())
                 .orElseThrow(() -> new IllegalArgumentException("메뉴그룹을 찾을 수 없습니다.."));
         MenuOptionGroup menuOptionGroup = new MenuOptionGroup(menu, optionGroup);
-        MenuOptionGroup save = menuOptionGroupRepository.save(menuOptionGroup);
-        return 1;
+        menuOptionGroupRepository.save(menuOptionGroup);
     }
 
 }

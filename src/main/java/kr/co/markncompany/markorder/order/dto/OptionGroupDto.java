@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class OptionGroupDto {
 
-    private long id;
+    private String id;
     private String groupName;
     private boolean required;
     private int minSelect;

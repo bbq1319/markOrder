@@ -8,7 +8,21 @@ const state = {
         price: '',
         menuGroupId: '',
     }],
-    menuInfo: [],
+    menuInfo: [{
+        id: '', name: '', engName: '', price: '',
+        menuGroup: [{id: '', groupName: ''}],
+        menuOptionGroups: [{
+            optionGroup: [{
+                id: '', groupName: '',
+                minSelect: '', maxSelect: '',
+                options: [{
+                    id: '', name: '', price: ''
+                }],
+                regId: '', regAt: '', modId: '', modAt: ''
+            }]
+        }],
+        regId: '', regAt: '', modId: '', modAt: ''
+    }],
 }
 
 const getters = {

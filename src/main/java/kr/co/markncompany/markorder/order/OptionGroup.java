@@ -19,7 +19,7 @@ public class OptionGroup extends BaseEntity {
     @Id
     @Column(name = "option_group_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private String id;
     private String groupName;
     private boolean required;
     private int minSelect;

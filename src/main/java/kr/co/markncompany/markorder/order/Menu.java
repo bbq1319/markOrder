@@ -18,7 +18,7 @@ public class Menu extends BaseEntity {
     @Id
     @Column(name = "menu_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private String id;
     private String name;
     private String engName;
     private String price;

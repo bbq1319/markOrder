@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class MenuOptionGroupId implements Serializable {
 
-    private Long menu;
-    private Long optionGroup;
+    private String menu;
+    private String optionGroup;
 
     @Override
     public boolean equals(Object obj) {

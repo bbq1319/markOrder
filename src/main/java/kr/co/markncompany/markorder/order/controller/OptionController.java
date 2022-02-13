@@ -46,12 +46,9 @@ public class OptionController {
             return ResponseEntity.badRequest().body("저장 중 오류가 발생했습니다.");
         }
 
-        long id = optionService.insertOption(optionDto);
-        if (id > 0)
-            return ResponseEntity.ok().body("저장에 성공했습니다.");
-        else
-            return ResponseEntity.badRequest().body("저장에 실패했습니다.");
-    }
+        optionService.insertOption(optionDto);
+        return ResponseEntity.ok().body("저장에 성공했습니다.");
+}
 
     /**
      * 옵션그룹 저장
@@ -66,11 +63,8 @@ public class OptionController {
             return ResponseEntity.badRequest().body("저장 중 오류가 발생했습니다.");
         }
 
-        long id = optionService.insertOptionGroup(optionGroupDto);
-        if (id > 0)
-            return ResponseEntity.ok().body("저장에 성공했습니다.");
-        else
-            return ResponseEntity.badRequest().body("저장에 실패했습니다.");
+        optionService.insertOptionGroup(optionGroupDto);
+        return ResponseEntity.ok().body("저장에 성공했습니다.");
     }
 
 }

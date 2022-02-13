@@ -45,12 +45,12 @@ public class MenuController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity getMenuInfo(@PathVariable Optional<Long> id, HttpServletRequest request) {
+    public ResponseEntity getMenuInfo(@PathVariable Optional<String> id, HttpServletRequest request) {
         if (!TokenUtil.checkJwt(request))
             return new ResponseEntity(new ErrorResponse("invalid token"), HttpStatus.UNAUTHORIZED);
 
         if (id.isPresent()) {
-            Long menuId = id.get();
+            String menuId = id.get();
             System.out.println(menuId);
             Menu menu = menuRepository.findById(menuId)
                     .orElseThrow(() -> new IllegalArgumentException("메뉴 조회 실패"));
@@ -74,11 +74,8 @@ public class MenuController {
             return ResponseEntity.badRequest().body("저장 중 오류가 발생했습니다.");
         }
 
-        long id = menuService.insertMenu(menuDto);
-        if (id > 0)
-            return ResponseEntity.ok().body("저장에 성공했습니다.");
-        else
-            return ResponseEntity.badRequest().body("저장에 실패했습니다.");
+        menuService.insertMenu(menuDto);
+        return ResponseEntity.ok().body("저장에 성공했습니다.");
     }
 
     /**
@@ -94,11 +91,8 @@ public class MenuController {
             return ResponseEntity.badRequest().body("저장 중 오류가 발생했습니다.");
         }
 
-        long id = menuService.insertMenuGroup(menuGroupDto);
-        if (id > 0)
-            return ResponseEntity.ok().body("저장에 성공했습니다.");
-        else
-            return ResponseEntity.badRequest().body("저장에 실패했습니다.");
+        menuService.insertMenuGroup(menuGroupDto);
+        return ResponseEntity.ok().body("저장에 성공했습니다.");
     }
 
     /**
@@ -114,11 +108,8 @@ public class MenuController {
             return ResponseEntity.badRequest().body("저장 중 오류가 발생했습니다.");
         }
 
-        long id = menuService.insertMenuOptionGroup(menuOptionGroupDto);
-        if (id > 0)
-            return ResponseEntity.ok().body("저장에 성공했습니다.");
-        else
-            return ResponseEntity.badRequest().body("저장에 실패했습니다.");
+        menuService.insertMenuOptionGroup(menuOptionGroupDto);
+        return ResponseEntity.ok().body("저장에 성공했습니다.");
     }
 
 }

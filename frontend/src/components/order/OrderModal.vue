@@ -13,12 +13,11 @@
                 <div class="modal-body">
                     <slot name="body">
                         <form @submit.prevent="orderMenu">
-                            <p>{{price}}</p>
                             <div class="option-container" v-for="og in menuInfo.menuOptionGroups" :key="og.id">
                                 <p>{{og.optionGroup.groupName}}</p>
                                 <ul>
                                     <li v-for="options in og.optionGroup.options" :key="options.id">
-                                        <input type="radio" :id="options.id" :name="og.optionGroup.id" :value="options.id" :price="options.price" v-model="og.optionGroup.id" @click="changeOption" />
+                                        <input type="radio" :id="options.id" :name="og.optionGroup.id" :value="options.id" />
                                         <label :for="options.id"><span>{{options.name}}</span></label>
                                     </li>
                                 </ul>
@@ -50,51 +49,29 @@ export default {
     props: ["menuInfo"],
     data() {
         return {
-            price: this.menuInfo.price,
             menuOptionGroups: this.menuInfo.menuOptionGroups,
-            optionPrice: []
         }
     },
     methods: {
-        changeOption: function () {
-            // console.log("==changeOption==");
-            // const optPrice = event.target.getAttribute('price')
-            // console.log(optPrice);
-            // console.log(event);
-            // this.price = Number(this.price) + Number(optPrice);
-        },
-        orderMenu() {
-            console.log(this.menuOptionGroups);
-            console.log(this.menuInfo);
-            console.log(this.price);
-
-
+        orderMenu(event) {
+            this.options.filter(
+                o => {
+                    // 체크한 옵션들
+                    console.log(event.target.elements[o].value);
+                }
+            )
         }
     },
     created() {
+        let options = [];
         this.menuOptionGroups.filter(
             mog => {
                 const key = mog.optionGroup.id;
-
-                console.log(key);
-
-                let object = {};
-                object[key] = mog.optionGroup;
-                Object.assign(this.$data, object);
-                this.$watch(key, function (val) {
-                    console.log(val);
-                }, {deep: true});
+                options.push(key);
             }
         )
+        this.options = options;
     },
-    // watch: {
-    //     $data: {
-    //         handler: function (val, oldVal) {
-    //             console.log(val, oldVal);
-    //         },
-    //         deep: true,
-    //     }
-    // }
 }
 </script>
 

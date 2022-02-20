@@ -14,7 +14,6 @@ public class Options {
 
     @Id
     @Column(name = "option_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String price;
     private String name;

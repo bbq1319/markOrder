@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 public class Member extends BaseEntity implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String memberId;
     private String password;

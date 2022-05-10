@@ -27,9 +27,11 @@ public class Menu extends BaseEntity {
     private Long menuPrice;
     private Long stock;
 
+    @Builder.Default
     @OneToMany(mappedBy = "menu")
     private List<MenuOption> menuOptions = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "menu")
     private List<Cart> carts = new ArrayList<>();
 

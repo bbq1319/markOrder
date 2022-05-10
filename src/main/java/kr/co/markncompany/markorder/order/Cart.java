@@ -28,9 +28,11 @@ public class Cart extends BaseEntity {
 
     // User
 
+    @Builder.Default
     @OneToMany(mappedBy = "cart")
     private List<CartOption> cartOptions = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "cart")
     private List<OrderCart> orderCarts = new ArrayList<>();
 

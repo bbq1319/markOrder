@@ -62,8 +62,7 @@ public class MenuController {
     }
 
     /**
-     * 메뉴 저장
-     *
+     * 메뉴 추가하기
      * @param menuDto
      * @param result
      * @return

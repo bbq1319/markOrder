@@ -16,6 +16,10 @@ public class MenuService {
 
     private final MenuRepository menuRepository;
 
+    /**
+     * 메뉴 추가하기
+     * @param menuDto
+     */
     @Transactional
     public void insertMenu(MenuDto menuDto) {
         String id = "MN" + String.format("%04d", menuRepository.getSeq());

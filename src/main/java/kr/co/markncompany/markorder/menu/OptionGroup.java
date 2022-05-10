@@ -20,6 +20,7 @@ public class OptionGroup extends BaseEntity {
     private String optionGroupName;
     private String optionType;
 
+    @Builder.Default
     @OneToMany(mappedBy = "optionGroup")
     private List<Options> options = new ArrayList<>();
 

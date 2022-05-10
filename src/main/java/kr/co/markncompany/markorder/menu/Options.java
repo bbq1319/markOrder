@@ -27,9 +27,11 @@ public class Options extends BaseEntity {
     @JoinColumn(name = "option_group_id")
     private OptionGroup optionGroup;
 
+    @Builder.Default
     @OneToMany(mappedBy = "options")
     private List<MenuOption> menuOptions = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "options")
     private List<CartOption> cartOptions = new ArrayList<>();
 

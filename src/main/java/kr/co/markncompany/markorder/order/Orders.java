@@ -20,6 +20,7 @@ public class Orders extends BaseEntity {
     private Long price;
     private String orderType;
 
+    @Builder.Default
     @OneToMany(mappedBy = "orders")
     private List<OrderCart> orderCarts = new ArrayList<>();
 

@@ -20,6 +20,10 @@ public class MenuDto {
     private Long menuPrice;
     private Long stock;
 
+    private MenuOption menuOption;
+    private Options options;
+    private OptionGroup optionGroup;
+
     // 전체 메뉴 조회
     @QueryProjection
     public MenuDto(Menu menu) {
@@ -30,6 +34,9 @@ public class MenuDto {
     @QueryProjection
     public MenuDto(Menu menu, MenuOption menuOption, Options options, OptionGroup optionGroup) {
         setByMenu(menu);
+        this.menuOption = menuOption;
+        this.options = options;
+        this.optionGroup = optionGroup;
     }
 
     private void setByMenu(Menu menu) {

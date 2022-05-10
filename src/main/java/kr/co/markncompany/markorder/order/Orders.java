@@ -1,8 +1,6 @@
 package kr.co.markncompany.markorder.order;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import kr.co.markncompany.markorder.common.BaseEntity;
-import kr.co.markncompany.markorder.member.entity.Member;
 import lombok.*;
 
 import javax.persistence.*;

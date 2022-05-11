@@ -21,7 +21,6 @@ public class MenuTest {
     @Autowired
     private MenuCustomRepository menuCustomRepository;
 
-
     @Test
     void getMenuInfo() {
         Menu menu = menuRepository.findById("MN0001").orElseThrow();

@@ -3,6 +3,8 @@ package kr.co.markncompany.markorder.menu.repository;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import kr.co.markncompany.markorder.menu.dto.MenuDto;
+import kr.co.markncompany.markorder.menu.dto.OptionDto;
+import kr.co.markncompany.markorder.menu.dto.OptionGroupDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -37,21 +39,29 @@ public class MenuCustomRepository {
      * @param id
      * @return
      */
-    public List<MenuDto> getMenuInfoByMenuId(String id) {
+    public MenuDto getMenuInfoByMenuId(String id) {
         return queryFactory
                 .select(Projections.constructor(MenuDto.class,
-                        menu,
-                        menuOption,
-                        options,
-                        optionGroup
+                        menu
                 ))
                 .from(menu)
-                .leftJoin(menuOption).on(menu.id.eq(menuOption.menu.id))
-                .leftJoin(options).on(menuOption.options.id.eq(options.id))
-                .leftJoin(optionGroup).on(options.optionGroup.id.eq(optionGroup.id))
                 .where(
                         menu.id.eq(id)
                 )
+                .fetchOne();
+    }
+
+    public List<OptionGroupDto> getOptionInfoByMenuId(String menuId) {
+        return queryFactory
+                .select(Projections.constructor(OptionGroupDto.class,
+                        options,
+                        menuOption,
+                        optionGroup
+                ))
+                .from(menuOption)
+                .leftJoin(options).on(menuOption.options.id.eq(options.id))
+                .leftJoin(optionGroup).on(options.optionGroup.id.eq(optionGroup.id))
+                .where(menuOption.menu.id.eq(menuId))
                 .fetch();
     }
 

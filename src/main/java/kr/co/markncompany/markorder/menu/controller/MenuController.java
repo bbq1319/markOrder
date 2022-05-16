@@ -2,6 +2,8 @@ package kr.co.markncompany.markorder.menu.controller;
 
 import kr.co.markncompany.markorder.common.transfer.ErrorResponse;
 import kr.co.markncompany.markorder.menu.dto.MenuDto;
+import kr.co.markncompany.markorder.menu.dto.OptionDto;
+import kr.co.markncompany.markorder.menu.dto.OptionGroupDto;
 import kr.co.markncompany.markorder.menu.repository.MenuCustomRepository;
 import kr.co.markncompany.markorder.menu.repository.MenuRepository;
 import kr.co.markncompany.markorder.menu.service.MenuService;
@@ -18,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @AllArgsConstructor
@@ -48,10 +52,10 @@ public class MenuController {
 
         if (id.isPresent()) {
             String menuId = id.get();
-            List<MenuDto> menuDtoList = menuCustomRepository.getMenuInfoByMenuId(menuId);
-            MenuDto menuInfo = new MenuDto(menuDtoList);
-
-            return ResponseEntity.ok().body(menuInfo);
+            MenuDto menuInfo = menuCustomRepository.getMenuInfoByMenuId(menuId);
+            List<OptionGroupDto> optionDtoList = menuCustomRepository.getOptionInfoByMenuId(menuInfo.getId());
+            Map<String, List<OptionGroupDto>> collect = optionDtoList.stream().collect(Collectors.groupingBy(OptionGroupDto::getId));
+            return ResponseEntity.ok().body(collect);
         }
 
         return ResponseEntity.badRequest().body("메뉴 ID 조회 실패");

@@ -1,6 +1,8 @@
 package kr.co.markncompany.markorder.menu.dto;
 
+import com.querydsl.core.annotations.QueryProjection;
 import kr.co.markncompany.markorder.menu.MenuOption;
+import kr.co.markncompany.markorder.menu.OptionGroup;
 import kr.co.markncompany.markorder.menu.Options;
 import lombok.Data;
 
@@ -17,6 +19,10 @@ public class OptionDto {
     private Long menuOptionPrice;
     private boolean required;
 
+    // OptionGroup
+    private String optionGroupName;
+    private String optionType;
+
     private MenuOptionDto menuOptionDto;
 
     public OptionDto(MenuOption menuOption, Options options) {
@@ -30,6 +36,16 @@ public class OptionDto {
         this.optionPrice = options.getOptionPrice();
         this.stock = options.getStock();
         this.defaultCheck = options.isDefaultCheck();
+    }
+
+    private void setByMenuOption(MenuOption menuOption) {
+        this.menuOptionPrice = menuOption.getPrice();
+        this.required = menuOption.isRequired();
+    }
+
+    private void setByOptionGroup(OptionGroup optionGroup) {
+        this.optionGroupName = optionGroup.getOptionGroupName();
+        this.optionType = optionGroup.getOptionType();
     }
 
 }

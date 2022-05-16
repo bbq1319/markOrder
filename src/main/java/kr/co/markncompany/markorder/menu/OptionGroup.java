@@ -1,5 +1,6 @@
 package kr.co.markncompany.markorder.menu;
 
+import com.querydsl.core.annotations.QueryProjection;
 import kr.co.markncompany.markorder.common.BaseEntity;
 import lombok.*;
 

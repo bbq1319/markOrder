@@ -1,5 +1,6 @@
 package kr.co.markncompany.markorder.menu.dto;
 
+import com.querydsl.core.annotations.QueryProjection;
 import kr.co.markncompany.markorder.menu.MenuOption;
 import kr.co.markncompany.markorder.menu.OptionGroup;
 import kr.co.markncompany.markorder.menu.Options;
@@ -17,24 +18,33 @@ public class OptionGroupDto {
     private String optionGroupName;
     private String optionType;
 
-    private OptionDto optionDto;
-    private List<OptionDto> optionDtoList = new ArrayList<>();
+    // Options
+    private String optionName;
+    private Long optionPrice;
+    private Long stock;
+    private boolean defaultCheck;
 
-    public OptionGroupDto(List<OptionGroupDto> optionGroupDtoList) {
-        for (int i = 0; i < optionGroupDtoList.size(); i++) {
-            OptionGroupDto dto = optionGroupDtoList.get(i);
-            if (i == 0) {
-                id = dto.id;
-                optionGroupName = dto.optionGroupName;
-                optionType = dto.optionType;
-            }
-            this.optionDtoList.add(dto.getOptionDto());
-        }
+    // MenuOption
+    private Long menuOptionPrice;
+    private boolean required;
+
+    @QueryProjection
+    public OptionGroupDto(Options options, MenuOption menuOption, OptionGroup optionGroup) {
+        setByOptions(options);
+        setByMenuOption(menuOption);
+        setByOptionGroup(optionGroup);
     }
 
-    public OptionGroupDto(MenuOption menuOption, Options options, OptionGroup optionGroup) {
-        setByOptionGroup(optionGroup);
-        this.optionDto = new OptionDto(menuOption, options);
+    private void setByOptions(Options options) {
+        this.optionName = options.getOptionName();
+        this.optionPrice = options.getOptionPrice();
+        this.stock = options.getStock();
+        this.defaultCheck = options.isDefaultCheck();
+    }
+
+    private void setByMenuOption(MenuOption menuOption) {
+        this.menuOptionPrice = menuOption.getPrice();
+        this.required = menuOption.isRequired();
     }
 
     private void setByOptionGroup(OptionGroup optionGroup) {
